@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Официальный сайт летней физико-математической школы «Квант». Информация о смене, расписание, новости и личные кабинеты участников.">
+    <title>{% block title %}Летняя школа «Квант»{% endblock %}</title>
+    <!-- Подключение шрифта Inter из Google Fonts для современной типографики -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Основной CSS-файл проекта -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="{% url 'main:index' %}" class="logo">
+                <span class="logo-icon">𝚀</span>
+                <span class="logo-text">Квант</span>
+            </a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="{% url 'main:index' %}" class="nav-link active">Главная</a></li>
+                    <li><a href="#" class="nav-link disabled">Расписание</a></li>
+                    <li><a href="#" class="nav-link disabled">Профиль</a></li>
+                    <li><a href="#" class="nav-link disabled">Новости</a></li>
+                    <li><a href="#" class="nav-link disabled">О школе</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основное содержимое -->
+    <main class="main-content">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <p class="footer-copy">&copy; 2026 Летняя физико-математическая школа «Квант». Все права защищены.</p>
+            <p class="footer-info">Проект создан для обучения основам веб-разработки.</p>
+        </div>
+    </footer>
+</body>
+</html>

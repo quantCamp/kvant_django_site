@@ -1,0 +1,32 @@
+# Байткод Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Виртуальные окружения
+.venv/
+venv/
+ENV/
+env/
+
+# База данных SQLite
+db.sqlite3
+
+# Конфигурация сред разработки (PyCharm, VS Code и др.)
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Системные файлы macOS/Windows
+.DS_Store
+Thumbs.db
+
+# Логи и временные папки
+*.log
+local_settings.py
+media/
+staticfiles/
