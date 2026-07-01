@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Главная | Летняя школа «Квант»{% endblock %}
 
@@ -6,6 +7,9 @@
 <!-- Герой-секция (Приветствие) -->
 <section class="hero">
     <div class="hero-content">
+        <div class="hero-logo-container">
+            <img src="{% static 'img/kvant-logo.png' %}" class="hero-logo" alt="Логотип школы Квант">
+        </div>
         <h1 class="hero-title">Летняя физико-математическая школа «Квант»</h1>
         <p class="hero-subtitle">
             Добро пожаловать на сайт школы «Квант». Здесь участники смогут посмотреть расписание, информацию о смене и свой профиль.

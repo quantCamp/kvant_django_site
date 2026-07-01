@@ -65,28 +65,36 @@ body {
 .logo {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
     text-decoration: none;
     color: var(--text-main);
     font-weight: 700;
     font-size: 1.4rem;
-    transition: var(--transition-fast);
+    transition: all var(--transition-fast);
 }
 
 .logo:hover {
     color: var(--primary-color);
 }
 
-.logo-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #60a5fa, #3b82f6);
-    color: #ffffff;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 6px;
-    font-size: 1.1rem;
+.logo:hover .logo-icon {
+    transform: rotate(-8deg) scale(1.05);
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.35);
+}
+
+.logo-text {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--text-main) 30%, #475569 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all var(--transition-fast);
+}
+
+.logo:hover .logo-text {
+    background: linear-gradient(135deg, var(--primary-color) 30%, var(--primary-hover) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .nav-list {
@@ -147,9 +155,9 @@ body {
     background: linear-gradient(135deg, #eff6ff 0%, #faf5ff 100%);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius-lg);
-    padding: 4rem 3rem;
+    padding: 1.5rem 3rem;
     text-align: center;
-    margin-bottom: 3.5rem;
+    margin-bottom: 2.5rem;
     box-shadow: var(--shadow-sm);
     position: relative;
     overflow: hidden;
@@ -172,6 +180,25 @@ body {
     margin: 0 auto;
     position: relative;
     z-index: 2;
+}
+
+.hero-logo-container {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-logo {
+    height: 12rem;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.15));
+    transition: all var(--transition-normal);
+}
+
+.hero-logo:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 6px 16px rgba(59, 130, 246, 0.25));
 }
 
 .hero-title {
