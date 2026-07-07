@@ -14,9 +14,9 @@ def teachers_page(request):
     })
 
 # Create your views here.
-def teacher_description(request, teacher_name):
+def teacher_description(request, teacher_name, id):
 
-    teacher = Teacher.objects.get(name=teacher_name)
+    teacher = Teacher.objects.get(id = id)
     if teacher is not None:
         return render(request, './teacher.html', context={'teacher': teacher})
 

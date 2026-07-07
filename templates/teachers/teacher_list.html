@@ -6,7 +6,10 @@
 <h1>Знакомство с коллективом ЛФМШ «Квант»</h1>
 <h2>Наши преподаватели</h2> 
 <ul>
-    <li><a href="teacher/{{ teacher.name }}">{{ teacher.name }}</a></li>
+    {% for teacher in teachers %}
+    <li><a href="teacher/{{ teacher.first_name }}">{{ teacher.first_name }}</a></li>
+    {{ teacher.photo }}
+    {% endfor %}
 </ul>
 {% endblock %}
 
