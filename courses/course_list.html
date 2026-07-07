@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Список курсов — Лагерь Квант{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h1 class="mb-5 text-center course-title-main">🎯 Наши учебные программы</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for course in courses %}
+        <div class="col">
+            <div class="card h-100 shadow-sm course-card">
+                <div class="card-body">
+                    <div class="course-icon-box mb-3">{{ course.icon }}</div>
+                    <h5 class="card-title course-card-title">{{ course.title }}</h5>
+                    <p class="card-text text-muted course-card-text">{{ course.short_description }}</p>
+                </div>
+                <div class="card-footer bg-transparent border-top-0 pt-0">
+                    <a href="{% url 'courses:course_detail' course.pk %}" class="btn btn-kvant-primary w-100 py-2">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <p class="text-muted">Курсы пока наполняются. Загляните позже!</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
