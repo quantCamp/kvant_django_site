@@ -21,3 +21,4 @@ def teacher_description(request, teacher_name):
         return render(request, './teacher.html', context={'teacher': teacher})
 
     raise Http404(f'Учителя {teacher_name} нет')
+
