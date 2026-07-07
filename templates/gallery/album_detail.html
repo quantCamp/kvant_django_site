@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="album-detail">
+    <!-- Заголовок альбома -->
+    <div class="album-header">
+        <h1 class="album-title">{{ album.title }}</h1>
+        <p class="album-description">{{ album.description }}</p>
+        <a href="{% url 'album_list' %}" class="back-link">← Назад к альбомам</a>
+    </div>
+
+    <!-- Сетка фотографий -->
+    <div class="photo-grid">
+        {% for photo in photos %}
+            <div class="photo-item">
+                <a href="{{ photo.img.url }}"
+                   data-lightbox="gallery"
+                   data-title="{{ photo.caption|default:album.title }}"
+                   class="photo-link">
+                    <img src="{{ photo.img.url }}"
+                         alt="{{ photo.caption|default:'Фото' }}"
+                         class="photo-image"
+                         loading="lazy">
+                </a>
+                {% if photo.caption %}
+                    <p class="photo-caption">{{ photo.caption }}</p>
+                {% endif %}
+            </div>
+        {% empty %}
+            <div class="empty-message">
+                <p>В этом альбоме пока нет фотографий</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script>
+        // Настройка Lightbox
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'albumLabel': 'Фото %1 из %2',
+            'fadeDuration': 300,
+            'imageFadeDuration': 300
+        });
+    </script>
+{% endblock %}

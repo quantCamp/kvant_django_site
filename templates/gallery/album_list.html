@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+{% block content %}
+<div class="album-list">
+    <h1>Фотоальбомы</h1>
+    <div class="album-grid">
+        {% for album in albums %}
+            <div class="album-card">
+                <a href="{% url 'album_detail' album.id %}">
+                    <div class="album-cover">
+                        <img src="{{ album.cover_image.url }}" alt="{{ album.title }}">
+                    </div>
+                    <div class="album-info">
+                        <h3>{{ album.title }}</h3>
+                        <p>{{ album.description|truncatechars:100 }}</p>
+                        <span class="album-date">{{ album.created_at|date:"d.m.Y" }}</span>
+                        <span class="album-count">{{ album.photos.count }} фото</span>
+                    </div>
+                </a>
+            </div>
+        {% empty %}
+            <p>Нет доступных альбомов</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
