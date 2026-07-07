@@ -1,6 +1,6 @@
 {% extends 'basa.html' %}
 
-{% block title %} {{ teacher.name }} {% endblock %}
+{% block title %} {{ teacher.first_name }} {% endblock %}
 
 {% load static %}
 
@@ -17,13 +17,16 @@
     <!-- Имя -->
     <div class="info-field">
       <span class="label">👤 Имя</span>
-      <span class="value" id="teacherName">{{ teacher.name }}</span>
+      <span class="value" id="teacherName">{{ teacher.first_name }}</span>
     </div>
 
     <!-- Курс (предмет / дисциплина) -->
     <div class="info-field">
+    
       <span class="label">📚 Курс</span>
-      <span class="value" id="teacherCourse">{{ teacher.course }}</span>
+      {% for course in teacher.courses %}
+      <span class="value" id="teacherCourse">{{ course.name }}</span>
+      {% endfor %}
     </div>
 
     <!-- Возраст -->
