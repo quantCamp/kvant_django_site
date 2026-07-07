@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from library import models
 
 
-# Create your views here.
 def main_page(request):
-    return render(request, "./library.html")
+    categories = models.Category.objects.all()
+    return render(request, "./library.html", context=categories)
