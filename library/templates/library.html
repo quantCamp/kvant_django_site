@@ -1,10 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-<ul>
-    <li><a href="#">Категория 1</a></li>
-    <li><a href="#">Категория 2</a></li>
-    <li><a href="#">Категория 3</a></li>
-    <li><a href="#">Категория 4</a></li>
-    <li><a href="#">Категория 5</a></li>
+<ul class="category-list">
+    {% for category in categories %}
+    <li><a href="/library/{{ category.id }}">{{ category.name }}</a></li>
+    {% endfor %}
 </ul>
 {% endblock %}
