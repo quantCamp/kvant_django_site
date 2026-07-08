@@ -10,3 +10,16 @@ class Teacher(models.Model):
     bio = models.TextField(null=False, blank=False, default="")
     achievments = models.TextField(null=True, blank=True)
     contact_email = models.EmailField(null=True, blank=True)
+
+
+
+
+class TeacherFeedBack(models.Model):
+
+    teacher = models.ForeignKey(
+        Teacher, 
+        on_delete=models.CASCADE,
+        related_name="feedbacks"
+    )
+    text = models.TextField(null=False, blank=False)
+    created_at = models.DateTimeField(auto_now_add=True)
