@@ -4,7 +4,7 @@ def news_list(request):
     return render(request, 'news/news_list.html')
 
 def news_detail(request):
-    return render(request, 'news/news_details.html')
+    return render(request, 'news/news_detail.html')
 
 def news_add(request):
     return render(request, 'news/news_add.html')
