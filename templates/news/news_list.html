@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Новостная страница</title>
+</head>
+<body>
+    {% for i in news %}
+    <section>
+        <h2>{{i.name}}</h2>
+        <h4>{{i.description}}</h4>
+    </section>
+    {% empty %}
+`       <h4>Нету инфы, сорян:(</h4>
+    {% endfor %}
+
+</body>
+</html>
