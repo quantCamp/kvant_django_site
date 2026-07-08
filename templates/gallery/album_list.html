@@ -1,29 +1,37 @@
 {% extends 'base.html' %}
-<head>
-    {% load static %}
+{% load static %}
+
+{% block extra_css %}
     <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
-    {% block extra_css %}{% endblock %}
-</head>
+{% endblock %}
+
 {% block content %}
 <div class="album-list">
-    <h1>Фотоальбомы</h1>
+    <h1 class="page-title">Фотоальбомы</h1>
+
     <div class="album-grid">
         {% for album in albums %}
             <div class="album-card">
-                <a href="{% url 'album_detail' album.id %}">
+                <a href="{% url 'album_detail' album.id %}" class="album-link-wrapper">
                     <div class="album-cover">
-                        <img src="{{ album.cover_image.url }}" alt="{{ album.title }}">
+                        {% if album.cover_image %}
+                            <img src="{{ album.cover_image.url }}" alt="{{ album.title }}">
+                        {% else %}
+                            <div class="album-cover-placeholder">📸</div>
+                        {% endif %}
                     </div>
                     <div class="album-info">
                         <h3>{{ album.title }}</h3>
-                        <p>{{ album.description|truncatechars:100 }}</p>
-                        <span class="album-date">{{ album.created_at|date:"d.m.Y" }}</span>
-                        <span class="album-count">{{ album.photos.count }} фото</span>
+                        <p class="album-description">{{ album.description|truncatechars:100 }}</p>
+                        <div class="album-meta">
+                            <span class="album-date">{{ album.created_at|date:"d.m.Y" }}</span>
+                            <span class="album-count">{{ album.photos.count }} фото</span>
+                        </div>
                     </div>
                 </a>
             </div>
         {% empty %}
-            <p>Нет доступных альбомо</p>
+            <p class="empty-message">Нет доступных альбомов</p>
         {% endfor %}
     </div>
 </div>

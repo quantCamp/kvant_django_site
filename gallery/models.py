@@ -8,7 +8,9 @@ class Album(models.Model):
                 upload_to="gallery/")
     created_at = models.DateField(auto_now_add=True)
     #related_news = models.ForeignKey(NewsArticle, on_delete = models.SET_NULL, null = True, blank = True, related_name = "albums")
-
+    def __str__(self):
+        return self.title
+    
 class Photo(models.Model):
     id = models.AutoField(primary_key=True)
     album = models.ForeignKey(Album, on_delete = models.CASCADE, related_name = "photos")

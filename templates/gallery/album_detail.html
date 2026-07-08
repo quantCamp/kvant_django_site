@@ -8,11 +8,11 @@
 
 {% block content %}
 <div class="album-detail">
-    <!-- Заголовок альбома -->
+    <!-- Заголовок альбома (ссылку убрали отсюда!) -->
     <div class="album-header">
         <h1 class="album-title">{{ album.title }}</h1>
         <p class="album-description">{{ album.description }}</p>
-        <a href="{% url 'album_list' %}" class="back-link">← Назад к альбомам</a>
+        <!-- Ссылка "Назад к альбомам" больше НЕ здесь -->
     </div>
 
     <!-- Сетка фотографий -->
@@ -38,13 +38,19 @@
             </div>
         {% endfor %}
     </div>
+
+    <!-- ===== ССЫЛКА "НАЗАД" ТЕПЕРЬ ЗДЕСЬ, ВНИЗУ! ===== -->
+    <div class="back-to-albums-wrapper">
+        <a href="{% url 'album_list' %}" class="back-link">
+            ← Назад к альбомам
+        </a>
+    </div>
 </div>
 {% endblock %}
 
 {% block extra_js %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
     <script>
-        // Настройка Lightbox
         lightbox.option({
             'resizeDuration': 200,
             'wrapAround': true,
