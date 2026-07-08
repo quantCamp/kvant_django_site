@@ -6,17 +6,13 @@ from teachers.forms import TeacherFD
 from teachers.models import Teacher
 
 def teachers_page(request):
-
-
-
     teachers = Teacher.objects.all()
-
-    return render(request, './teachers/teacher_list.html', context={
-        'teachers': teachers
-    })
+    return render(request, './teachers/teacher_list.html', context={'teachers': teachers})
 
 
-def teacher_description(request,id): 
+def teacher_description(request, teacher_id):
+    teacher = Teacher.objects.get(id=teacher_id)
+    coursesy = teacher.courses.all()
     if request.method == 'POST':
         form = TeacherFD(request.POST)
         if form.is_valid():
@@ -26,10 +22,6 @@ def teacher_description(request,id):
         return redirect('teachers')
     else:
         form = TeacherFD()
-    teacher = Teacher.objects.get(id = id)
     if teacher is not None:
-        return render(request, './teacher.html', context={'teacher': teacher,
-                                                          'form' : form})
-
-    raise Http404(f'Учителя {id} нет')
+       return render(request, './teachers/teachers_info.html', context={'teacher': teacher, 'course': coursesy, 'form':form})
 
