@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Преподаватели Кванта{% endblock %}
+
+{% block content %}
+<h1>Знакомство с коллективом ЛФМШ «Квант»</h1>
+<h2>Наши преподаватели</h2> 
+<ul>
+    {% for teacher in teachers %}
+    <li><a href="/teachers/{{ teacher.id }}">{{ teacher.first_name }}</a></li>
+    {{ teacher.photo }}
+    {% endfor %}
+</ul>
+{% endblock %}
+

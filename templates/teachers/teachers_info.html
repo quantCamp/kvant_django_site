@@ -1,4 +1,4 @@
-{% extends 'basa.html' %}
+{% extends 'base.html' %}
 
 {% block title %} {{ teacher.first_name }} {% endblock %}
 
@@ -24,7 +24,7 @@
     <div class="info-field">
     
       <span class="label">📚 Курс</span>
-      {% for course in teacher.courses %}
+      {% for course in teacher.courses.all %}
       <span class="value" id="teacherCourse">{{ course.name }}</span>
       {% endfor %}
     </div>
