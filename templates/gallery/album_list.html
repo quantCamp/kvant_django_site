@@ -1,38 +1,41 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block extra_css %}
+{% block title %}Галерея — ЛФМШ «Квант»{% endblock %}
+
+{% block extra_head %}
     <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="album-list">
-    <h1 class="page-title">Фотоальбомы</h1>
+<div class="gallery-header">
+    <h1>Галерея</h1>
+    <p class="subtitle">Воспоминания о наших сменах</p>
+</div>
 
-    <div class="album-grid">
-        {% for album in albums %}
-            <div class="album-card">
-                <a href="{% url 'album_detail' album.id %}" class="album-link-wrapper">
-                    <div class="album-cover">
-                        {% if album.cover_image %}
-                            <img src="{{ album.cover_image.url }}" alt="{{ album.title }}">
-                        {% else %}
-                            <div class="album-cover-placeholder">📸</div>
-                        {% endif %}
-                    </div>
-                    <div class="album-info">
-                        <h3>{{ album.title }}</h3>
-                        <p class="album-description">{{ album.description|truncatechars:100 }}</p>
-                        <div class="album-meta">
-                            <span class="album-date">{{ album.created_at|date:"d.m.Y" }}</span>
-                            <span class="album-count">{{ album.photos.count }} фото</span>
-                        </div>
-                    </div>
-                </a>
+<div class="album-grid">
+    {% for album in albums %}
+    <div class="album-card">
+        <a href="{% url 'gallery:album_detail' album.id %}">
+            <div class="album-cover">
+                <img src="{{ album.cover_image.url }}" alt="{{ album.title }}">
+                <div class="album-overlay">
+                    <span class="photo-count">{{ album.photos.count }} фото</span>
+                </div>
             </div>
-        {% empty %}
-            <p class="empty-message">Нет доступных альбомов</p>
-        {% endfor %}
+            <div class="album-info">
+                <h3>{{ album.title }}</h3>
+                <p class="album-date">{{ album.created_at|date:"d.m.Y" }}</p>
+                {% if album.description %}
+                    <p class="album-description">{{ album.description|truncatechars:80 }}</p>
+                {% endif %}
+            </div>
+        </a>
     </div>
+    {% empty %}
+    <div class="empty-message">
+        <p>📸 Пока нет альбомов. Загрузите первые фотографии в админке!</p>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}
