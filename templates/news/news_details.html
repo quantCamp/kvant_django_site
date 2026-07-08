@@ -1,0 +1,133 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новости - Детали</title>
+    <link rel="stylesheet" href="{% static 'css/news_details.css' %}">
+
+</head>
+<body>
+    <div class="container">
+        <!-- Шапка -->
+        <header class="header">
+            <a href="news_list.html" class="logo">
+                <i class="fas fa-newspaper"></i>
+                <h1>Новости</h1>
+            </a>
+            <nav class="nav-links">
+                <a href="news_list.html"><i class="fas fa-list"></i> Список</a>
+                <a href="news_details.html" class="active"><i class="fas fa-eye"></i> Детали</a>
+                <a href="news_add.html" class="btn-add"><i class="fas fa-plus"></i> Добавить</a>
+            </nav>
+        </header>
+
+        <!-- Хлебные крошки -->
+        <div class="breadcrumbs">
+            <a href="news_list.html"><i class="fas fa-home"></i> Главная</a>
+            <span>/</span>
+            <a href="news_list.html">Новости</a>
+            <span>/</span>
+            <span>Переговоры на высшем уровне</span>
+        </div>
+
+        <!-- Детальная новость -->
+        <article class="news-detail">
+            <span class="tag">Политика</span>
+            <h1>Переговоры на высшем уровне завершились подписанием исторического договора</h1>
+            <div class="meta">
+                <span><i class="fas fa-user-circle"></i> Анна Коваль</span>
+                <span><i class="far fa-calendar-alt"></i> 07 июля 2026, 14:30</span>
+                <span><i class="far fa-eye"></i> 2 847 просмотров</span>
+                <span><i class="far fa-comment"></i> 23 комментария</span>
+            </div>
+
+            <div class="featured-image">
+                <i class="fas fa-landmark"></i>
+            </div>
+
+            <div class="content">
+                <p><strong>Сегодня в столице состоялась встреча глав государств, которая продлилась более пяти часов.</strong> В результате переговоров были подписаны важные соглашения о сотрудничестве в экономической и культурной сферах.</p>
+
+                <p>Стороны договорились о снижении таможенных пошлин на ряд товаров, а также о совместных проектах в области науки и образования. Особое внимание было уделено вопросам экологии и климатической повестки.</p>
+
+                <h2>Ключевые пункты договора</h2>
+                <ul>
+                    <li>Создание совместного экономического совета</li>
+                    <li>Упрощение визового режима для отдельных категорий граждан</li>
+                    <li>Совместные исследования в области возобновляемой энергетики</li>
+                    <li>Культурные обмены и студенческие программы</li>
+                </ul>
+
+                <p>Как отметил глава делегации, <em>«этот договор открывает новую страницу в отношениях между нашими странами. Мы намерены развивать сотрудничество по всем направлениям»</em>.</p>
+
+                <p>Эксперты уже положительно оценили подписанные документы. По их мнению, это может стать стимулом для экономического роста в обоих регионах.</p>
+
+                <p>Следующий раунд переговоров запланирован на октябрь этого года. Ожидается, что он будет посвящен вопросам цифровой трансформации и кибербезопасности.</p>
+            </div>
+
+            <!-- Кнопки действий -->
+            <div class="action-buttons">
+                <button class="btn-back" onclick="window.location.href='news_list.html'">
+                    <i class="fas fa-arrow-left"></i> Назад к списку
+                </button>
+                <button class="btn-edit" onclick="window.location.href='news_add.html'">
+                    <i class="fas fa-edit"></i> Редактировать
+                </button>
+                <button class="btn-delete" onclick="if(confirm('Вы уверены, что хотите удалить эту новость?')) { alert('Новость удалена!'); }">
+                    <i class="fas fa-trash"></i> Удалить
+                </button>
+            </div>
+        </article>
+
+        <!-- Комментарии -->
+        <section class="comments-section">
+            <h3><i class="fas fa-comments"></i> Комментарии (23)</h3>
+
+            <div class="comment">
+                <div>
+                    <span class="comment-author">Иван Петров</span>
+                    <span class="comment-date">07.07.2026, 15:20</span>
+                </div>
+                <div class="comment-text">Отличные новости! Наконец-то конструктивный диалог между странами.</div>
+            </div>
+
+            <div class="comment">
+                <div>
+                    <span class="comment-author">Екатерина Смирнова</span>
+                    <span class="comment-date">07.07.2026, 16:05</span>
+                </div>
+                <div class="comment-text">Интересно, как это отразится на простых гражданах. Надеюсь, будут позитивные изменения.</div>
+            </div>
+
+            <div class="comment">
+                <div>
+                    <span class="comment-author">Алексей Козлов</span>
+                    <span class="comment-date">07.07.2026, 17:45</span>
+                </div>
+                <div class="comment-text">Долгожданное событие. Главное, чтобы договоренности были выполнены.</div>
+            </div>
+
+            <!-- Форма добавления комментария -->
+            <div class="comment-form">
+                <input type="text" placeholder="Ваше имя...">
+                <input type="text" placeholder="Текст комментария...">
+                <button><i class="fas fa-paper-plane"></i> Отправить</button>
+            </div>
+        </section>
+
+        <!-- Футер -->
+        <footer class="footer">
+            <span>&copy; 2026 Новости. Все права защищены.</span>
+            <div>
+                <a href="#"><i class="fas fa-info-circle"></i> О нас</a>
+                <a href="#"><i class="fas fa-envelope"></i> Контакты</a>
+                <a href="#"><i class="fas fa-shield-alt"></i> Политика</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
