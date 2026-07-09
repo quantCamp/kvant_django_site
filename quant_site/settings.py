@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,6 +28,12 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Настройки медиа-файлов
+MEDIA_URL = '/media/'  # URL для доступа к файлам
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,7 +46,10 @@ INSTALLED_APPS = [
     
     # Пользовательские приложения
     'main.apps.MainConfig',
-    'faq.apps.FaqConfig'
+    'faq.apps.FaqConfig',
+    'gallery.apps.GalleryConfig',
+    'schedule.apps.ScheduleConfig',
+    "library.apps.LibraryConfig"
 ]
 
 MIDDLEWARE = [

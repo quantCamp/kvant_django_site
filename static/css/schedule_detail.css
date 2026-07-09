@@ -1,0 +1,103 @@
+.schedule-detail-container {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-md);
+    max-width: 800px;
+    margin: 2rem auto;
+    transition: box-shadow var(--transition-normal);
+}
+
+.schedule-detail-container:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+/* Главный заголовок мероприятия */
+.schedule-detail-container h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    letter-spacing: -0.025em;
+    position: relative;
+}
+
+/* Декоративная линия под основным заголовком */
+.schedule-detail-container h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-color);
+    margin-top: 0.75rem;
+    border-radius: 2px;
+}
+
+/* Блок с детальным описанием */
+.schedule-full-description {
+    background: linear-gradient(135deg, #eff6ff 0%, #faf5ff 100%);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+/* Подзаголовок описания */
+.schedule-full-description h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+}
+
+/* Текст самого описания */
+.schedule-full-description p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    white-space: pre-line; /* Сохраняет абзацы и переносы строк из базы данных */
+}
+
+/* Кнопка возврата назад (стилизованная под .btn-outline из вашего Style.css) */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    transition: all var(--transition-fast) ease-in-out;
+    cursor: pointer;
+}
+
+.btn-back:hover {
+    background-color: #ffffff;
+    border-color: var(--text-muted);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Адаптивность для мобильных экранов */
+@media (max-width: 768px) {
+    .schedule-detail-container {
+        padding: 1.5rem;
+        margin: 1rem 0;
+    }
+
+    .schedule-detail-container h1 {
+        font-size: 1.75rem;
+    }
+
+    .schedule-full-description {
+        padding: 1rem;
+    }
+}
