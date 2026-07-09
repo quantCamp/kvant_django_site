@@ -25,7 +25,8 @@ from quant_site import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),  # Маршрутизация на приложение main
-    path('news/', include("news.urls"), name='news')
+    path('news/', include("news.urls"), name='news'),
+    path('about/', include("about.urls")),
     path('faq/', include('faq.urls')),     # Главная страница
     path('gallery/', include('gallery.urls')),
     path('schedule/', include('schedule.urls')),

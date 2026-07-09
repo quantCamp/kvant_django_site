@@ -34,13 +34,11 @@
         <h3 class="course-subtitle" style="font-size: 1.15rem; margin-bottom: 0;">👨‍🏫 Преподаватели курса</h3>
         <div class="teachers-list">
             {% for teacher in course.teachers.all %}
-            <div class="teacher-item" style="transition: border-color var(--transition-fast); border: 1px solid var(--border-color);">
-                <span class="teacher-name" style="color: var(--primary-color); font-weight: 600; display: block; margin-bottom: 0.25rem;">
-                    {{ teacher.name }}
-                </span>
-                <a href="/teachers/{{ teacher.pk }}" class="teacher-name-link" style="text-decoration: none; color: var(--primary-color); font-weight: 600; display: block; margin-bottom: 0.25rem;">
-
-                <div class="teacher-bio">{{ teacher.first_name }} {{ teacher.patronymic }}</div>
+            <div class="teacher-item">
+                <a href="{% url 'teachers:teacher_name' teacher_id=teacher.pk %}" class="teacher-name-link">
+                    {{ teacher.first_name }} {{ teacher.patronymic }}
+                </a>
+                <div class="teacher-bio">{{ teacher.short_info|default:"Преподаватель школы «Квант»" }}</div>
             </div>
             {% empty %}
             <p style="color: var(--text-muted); font-size: 0.875rem;">Преподаватели скоро будут назначены.</p>

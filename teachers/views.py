@@ -20,7 +20,7 @@ def teacher_description(request, teacher_id):
                 teacher = teacher,
                 question=form.cleaned_data["question"],
             )
-        return redirect('teacher_name', teacher_id = teacher_id)
+        return redirect('teachers:teacher_name', teacher_id = teacher_id)
     else:
         form = TeacherFD()
     if teacher is not None:

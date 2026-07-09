@@ -14,10 +14,6 @@
         <p class="hero-subtitle">
             Добро пожаловать на сайт школы «Квант». Здесь участники смогут посмотреть расписание, информацию о смене и свой профиль.
         </p>
-        <div class="hero-actions">
-            <a href="#" class="btn btn-primary disabled">Начать работу</a>
-            <a href="{% url 'about:about' %}" class="btn btn-outline">Подробнее о школе</a>
-        </div>
     </div>
 </section>
 
@@ -25,7 +21,17 @@
 <section class="features">
     <h2 class="section-title">Разделы сайта</h2>
     <div class="cards-grid">
-        <!-- Карточка 1: Расписание -->
+        <!-- Карточка 1: Новости -->
+        <div class="card">
+            <div class="card-icon card-icon-orange">📰</div>
+            <h3 class="card-title">Новости</h3>
+            <p class="card-text">
+                Важные объявления администрации, ежедневные фотоотчеты, репортажи из жизни лагеря и статьи от преподавателей.
+            </p>
+            <a href="{% url 'news:index' %}" class="card-link">Читать новости &rarr;</a>
+        </div>
+
+        <!-- Карточка 2: Расписание -->
         <div class="card">
             <div class="card-icon card-icon-blue">📅</div>
             <h3 class="card-title">Расписание</h3>
@@ -35,17 +41,47 @@
             <a href="{% url 'schedule:schedule_view' %}" class="card-link">Перейти к расписанию &rarr;</a>
         </div>
 
-        <!-- Карточка 3: Новости -->
+        <!-- Карточка 3: Преподаватели -->
         <div class="card">
-            <div class="card-icon card-icon-orange">📰</div>
-            <h3 class="card-title">Новости</h3>
+            <div class="card-icon card-icon-green">👨‍🏫</div>
+            <h3 class="card-title">Преподаватели</h3>
             <p class="card-text">
-                Важные объявления администрации, ежедневные фотоотчеты, репортажи из жизни лагеря и статьи от преподавателей.
+                Познакомьтесь с нашей командой: опытные преподаватели ведущих вузов, научные сотрудники и кураторы.
             </p>
-            <a href="#" class="card-link disabled">Читать новости &rarr;</a>
+            <a href="{% url 'teachers:teachers_page' %}" class="card-link">Наши преподаватели &rarr;</a>
         </div>
 
-        <!-- Карточка 4: О школе -->
+        <!-- Карточка 4: Курсы -->
+        <div class="card">
+            <div class="card-icon card-icon-blue">🎓</div>
+            <h3 class="card-title">Курсы</h3>
+            <p class="card-text">
+                Ознакомьтесь с нашими учебными программами, направлениями обучения и преподавательским составом лагеря.
+            </p>
+            <a href="{% url 'courses:course_list' %}" class="card-link">Смотреть курсы &rarr;</a>
+        </div>
+
+        <!-- Карточка 5: Галерея -->
+        <div class="card">
+            <div class="card-icon card-icon-orange">🖼️</div>
+            <h3 class="card-title">Галерея</h3>
+            <p class="card-text">
+                Посмотрите яркие фотографии и альбомы с наших смен: от учебных лекций до вечерних костров и праздников.
+            </p>
+            <a href="{% url 'gallery:album_list' %}" class="card-link">Перейти к фото &rarr;</a>
+        </div>
+
+        <!-- Карточка 6: Библиотека -->
+        <div class="card">
+            <div class="card-icon card-icon-purple">📚</div>
+            <h3 class="card-title">Полезные материалы</h3>
+            <p class="card-text">
+                Ссылки на полезные материалы для веб-разработки на Django, конспекты лекций и шпаргалки, некоторые можно скачать.
+            </p>
+            <a href="{% url 'library:main_page' %}" class="card-link">Смотреть материалы &rarr;</a>
+        </div>
+
+        <!-- Карточка 7: О школе -->
         <div class="card">
             <div class="card-icon card-icon-purple">🏫</div>
             <h3 class="card-title">О школе</h3>
@@ -55,23 +91,14 @@
             <a href="{% url 'about:about' %}" class="card-link">Узнать больше &rarr;</a>
         </div>
 
+        <!-- Карточка 8: FAQ -->
         <div class="card">
-            <div class="card-icon card-icon-blue">📚</div>
-            <h3 class="card-title">Курсы</h3>
+            <div class="card-icon card-icon-green">❓</div>
+            <h3 class="card-title">FAQ</h3>
             <p class="card-text">
-                Ознакомьтесь с нашими учебными программами, направлениями обучения и преподавательским составом лагеря.
+                Ответы на часто задаваемые вопросы о летней школе, проживании, питании, правилах лагеря и учебном процессе.
             </p>
-            <a href="{% url 'courses:course_list' %}" class="card-link">
-                Смотреть курсы →
-            </a>
-
-        <div class="card">
-            <div class="card-icon card-icon-purple">📚</div>
-            <h3 class="card-title">Полезные материалы</h3>
-            <p class="card-text">
-                Ссылки на полезные материалы для веб-разработки на Django, некоторые можно скачать.
-            </p>
-            <a href="/library/" class="card-link">Смотреть материалы &rarr;</a>
+            <a href="{% url 'faq:faq_view' %}" class="card-link">Смотреть вопросы &rarr;</a>
         </div>
     </div>
 </section>

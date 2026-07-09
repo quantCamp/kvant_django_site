@@ -1,62 +1,72 @@
 {% extends 'base.html' %}
-
-{% block title %} {{ teacher.first_name }} {% endblock %}
-
 {% load static %}
 
+{% block title %}{{ teacher.first_name }} {{ teacher.patronymic }} — Летняя школа «Квант»{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/teachers.css' %}">
+{% endblock %}
+
 {% block content %} 
-<div class="teacher-card" role="main" aria-label="Карточка учителя">
+<div class="teacher-detail-container">
     
-    <!-- аватар / инициалы -->
-    <div class="avatar">
-      <div class="avatar-circle">
-        <span class="label">💡 Аватар:</span>
-        <img src="{{ teacher.photo.url }}" alt="Логотип" width="110px">
-      </div>
+    <!-- Ссылка назад -->
+    <a href="{% url 'teachers:teachers_page' %}" class="back-link">&larr; Вернуться к преподавателям</a>
+
+    <!-- Аватар и ФИО -->
+    <div class="teacher-detail-header">
+        <div class="teacher-avatar-circle">
+            {% if teacher.photo %}
+                <img src="{{ teacher.photo.url }}" alt="{{ teacher.first_name }}">
+            {% else %}
+                <div style="font-size: 4rem; display: flex; align-items: center; justify-content: center; height: 100%; background: #f1f5f9; color: var(--text-muted);">👤</div>
+            {% endif %}
+        </div>
+        <div class="teacher-main-info">
+            <h1 class="teacher-fullname">{{ teacher.first_name }} {{ teacher.patronymic }} {{ teacher.last_name }}</h1>
+            <span class="teacher-badge">⭐ Преподаватель</span>
+        </div>
     </div>
 
-    <!-- Имя -->
+    <!-- Курсы -->
     <div class="info-field">
-      <span class="label">👤 ФИО</span>
-      <span class="value" id="teacherName">{{ teacher.first_name }} {{ teacher.patronymic }} {{ teacher.last_name }}</span>
+        <span class="label">📚 Курсы</span>
+        <div class="value">
+            {% for course in courses %}
+                <a href="{% url 'courses:course_detail' course.pk %}">{{ course.title }}</a>{% if not forloop.last %}, {% endif %}
+            {% empty %}
+                <span style="color: var(--text-muted);">Учебные курсы пока не закреплены.</span>
+            {% endfor %}
+        </div>
     </div>
 
-    <!-- Курс (предмет / дисциплина) -->
+    <!-- Биография -->
     <div class="info-field">
-      <span class="label">📚 Курсы</span>
-      {% for course in courses %}
-      <a href="/courses/{{ course.id }}"><span class="value" id="teacherCourse">{{ course.title }}</span></a>
-      {% endfor %}
-    </div>
-
-    <div class="info-field">
-      <span class="label">📜 Биография</span>
-      <span class="value age-value" id="teacherAge">
-        {{ teacher.bio }}
-      </span>
+        <span class="label">📜 Биография</span>
+        <div class="value">
+            {{ teacher.bio|default:"Биография преподавателя скоро будет опубликована." }}
+        </div>
     </div>
 
     <!-- Возраст -->
     <div class="info-field">
         <span class="label">🎂 Возраст</span>
-        <span class="value age-value" id="teacherAge">
+        <div class="value">
             {{ teacher.age }} <small>лет</small>
-        </span>
+        </div>
     </div>
 
+    <!-- Контакты -->
     <div class="info-field">
-      <span class="label">📧 Email</span>
-      <span class="value age-value" id="teacherAge">
-        {{ teacher.contact_email }}
-      </span>
+        <span class="label">📧 Email</span>
+        <div class="value">
+            {% if teacher.contact_email %}
+                <a href="mailto:{{ teacher.contact_email }}">{{ teacher.contact_email }}</a>
+            {% else %}
+                <span style="color: var(--text-muted);">Не указан</span>
+            {% endif %}
+        </div>
     </div>
-
-    <!-- декоративный элемент + маленький бейдж (необязательно, но добавляет акцент) -->
-    <div class="badge-row">
-        <span class="badge">⭐ преподаватель</span>
-    </div>
-
-    <div class="divider-light"></div>
 
     <!-- ФОРМА ДЛЯ ВОПРОСА -->
     <div class="question-section">
@@ -71,7 +81,7 @@
                 </label>
                 {{ form.question }}
                 {% if form.question.errors %}
-                <div class="form-errors">
+                <div class="form-errors" style="color: #ef4444; font-size: 0.875rem; margin-top: 0.25rem;">
                     {{ form.question.errors }}
                 </div>
                 {% endif %}
@@ -82,11 +92,10 @@
             </button>
         </form>
 
-        <!-- Сообщение об успешной отправке (опционально) -->
         {% if messages %}
-        <div class="messages">
+        <div class="messages" style="margin-top: 1.5rem;">
             {% for message in messages %}
-            <div class="alert alert-success">
+            <div class="alert alert-success" style="padding: 1rem; border-radius: var(--border-radius-sm); background-color: #ecfdf5; color: #065f46; border: 1px solid #d1fae5;">
                 {{ message }}
             </div>
             {% endfor %}
