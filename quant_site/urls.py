@@ -21,8 +21,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('', include('main.urls')),           # Главная страница
     path('gallery/', include('gallery.urls')),
+    path('schedule/', include('schedule.urls')),
+    path('library/', include('library.urls'))
 ]
 
 if settings.DEBUG:
