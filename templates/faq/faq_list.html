@@ -1,20 +1,119 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>часто задаваемые вопросы</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-{% for category in categories %}
-<h1>{{ category.name }}</h1>
-<ul>
-    {% for item in category.items.all %}
-    <li>{{ item.question }} - {{ item.answer }}</li>
+{% block title %}FAQ — ЛФМШ «Квант»{% endblock %}
+
+{% block content %}
+<!-- Стили для аккордеона FAQ -->
+<style>
+    .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .faq-item {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        background-color: #ffffff;
+        cursor: pointer;
+        transition: box-shadow 0.2s, border-color 0.2s;
+        overflow: hidden; /* Важно: скрывает контент при анимации */
+    }
+
+    .faq-item:hover {
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        border-color: #b8b8b8;
+    }
+
+    /* Заголовок вопроса */
+    .faq-header {
+        padding: 18px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        color: #333;
+    }
+
+    /* Иконка-стрелка */
+    .toggle-icon {
+        font-size: 14px;
+        color: #666;
+        min-width: 24px;
+        text-align: center;
+    }
+
+    /* Состояние "закрыто" (стрелка вправо) */
+    .faq-item .toggle-icon::after {
+        content: "▶";
+    }
+
+    /* Состояние "открыто" (класс .open добавлен JS, стрелка вниз) */
+    .faq-item.open .toggle-icon::after {
+        content: "▼";
+        color: #007bff; /* Цвет стрелки при открытии */
+    }
+
+    /* Блок с ответом */
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0; /* Плавное появление текста */
+        padding: 0 20px;
+        color: #555;
+        line-height: 1.6;
+        transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    opacity 0.3s ease;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    /* Когда элемент открыт - раскрываем ответ */
+    .faq-item.open .faq-answer {
+        max-height: 1000px; /* Увеличено для длинных динамических ответов */
+        opacity: 1;
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+</style>
+
+<div class="faq-container">
+    <h1>Ответы на вопросы</h1>
+    <p>Если не нашли ответ — напишите нам.</p>
+
+    {% for category in categories %}
+        <h2 style="margin-top: 40px; color: #333; border-bottom: 2px solid #007bff; padding-bottom: 8px;">
+            {{ category.name }}
+        </h2>
+
+        {% for item in category.items.all %}
+            <!-- Карточка вопроса -->
+            <div class="faq-item">
+                <div class="faq-header">
+                    <span><strong>{{ item.question }}</strong></span>
+                    <span class="toggle-icon"></span>
+                </div>
+
+                <!-- Ответ (скрыт по умолчанию) -->
+                <div class="faq-answer">
+                    {{ item.answer|linebreaksbr }}
+                </div>
+            </div>
+        {% endfor %}
     {% endfor %}
-</ul>
-{% endfor %}
+</div>
 
+<!-- Скрипт для раскрытия по клику -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const faqItems = document.querySelectorAll('.faq-item');
 
-</body>
-</html>
+        faqItems.forEach(item => {
+            item.addEventListener('click', function() {
+                this.classList.toggle('open');
+            });
+        });
+    });
+</script>
+{% endblock %}
