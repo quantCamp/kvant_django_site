@@ -3,7 +3,7 @@ from django.http import Http404
 
 from django.http import HttpResponse
 from teachers.forms import TeacherFD
-from teachers.models import Teacher
+from teachers.models import Teacher, TeacherFeedBack
 
 def teachers_page(request):
     teachers = Teacher.objects.all()
@@ -16,10 +16,11 @@ def teacher_description(request, teacher_id):
     if request.method == 'POST':
         form = TeacherFD(request.POST)
         if form.is_valid():
-            Teacher.objects.create(
+            TeacherFeedBack.objects.create(
+                teacher = teacher,
                 question=form.cleaned_data["question"],
             )
-        return redirect('teachers')
+        return redirect('teacher_name', teacher_id = teacher_id)
     else:
         form = TeacherFD()
     if teacher is not None:

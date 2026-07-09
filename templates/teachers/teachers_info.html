@@ -5,44 +5,85 @@
 {% load static %}
 
 {% block content %} 
-  <div class="teacher-card" role="main" aria-label="Карточка учителя">
+<div class="teacher-card" role="main" aria-label="Карточка учителя">
     
     <!-- аватар / инициалы -->
     <div class="avatar">
-      <div class="avatar-circle">
-        <!-- <img src="{{ teacher.img.url }}" alt="Логотип" width="90px"> аватар и бд -->
-      </div>
+        <div class="avatar-circle">
+            {% if teacher.photo %}
+            <img src="{{ teacher.photo }}" alt="{{ teacher.first_name }}" width="90px" style="border-radius: 50%;">
+            {% else %}
+            <span style="font-size: 48px; color: #6c5ce7;">{{ teacher.first_name|first }}{{ teacher.last_name|first }}</span>
+            {% endif %}
+        </div>
     </div>
 
     <!-- Имя -->
     <div class="info-field">
-      <span class="label">👤 Имя</span>
-      <span class="value" id="teacherName">{{ teacher.first_name }}</span>
+        <span class="label">👤 Имя</span>
+        <span class="value" id="teacherName">{{ teacher.first_name }} {{ teacher.last_name }}</span>
     </div>
 
     <!-- Курс (предмет / дисциплина) -->
     <div class="info-field">
-    
-      <span class="label">📚 Курс</span>
-      {% for course in teacher.courses.all %}
-      <span class="value" id="teacherCourse">{{ course.name }}</span>
-      {% endfor %}
+        <span class="label">📚 Курс</span>
+        {% for course in teacher.courses.all %}
+        <span class="value" id="teacherCourse">{{ course.name }}</span>
+        {% empty %}
+        <span class="value" style="color: #b2bec3;">Курсы не указаны</span>
+        {% endfor %}
     </div>
 
     <!-- Возраст -->
     <div class="info-field">
-      <span class="label">🎂 Возраст</span>
-      <span class="value age-value" id="teacherAge">
-        {{ teacher.age }} <small>года</small>
-      </span>
+        <span class="label">🎂 Возраст</span>
+        <span class="value age-value" id="teacherAge">
+            {{ teacher.age }} <small>лет</small>
+        </span>
     </div>
 
-    <!-- декоративный элемент + маленький бейдж (необязательно, но добавляет акцент) -->
+    <!-- декоративный элемент + маленький бейдж -->
     <div class="badge-row">
-      <span class="badge">⭐ преподаватель</span>
+        <span class="badge">⭐ преподаватель</span>
     </div>
 
     <div class="divider-light"></div>
 
-  </div>
+    <!-- ФОРМА ДЛЯ ВОПРОСА -->
+    <div class="question-section">
+        <h3 class="question-title">✉️ Задать вопрос {{ teacher.first_name }}</h3>
+        
+        <form method="post" class="question-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="{{ form.question.id_for_label }}" class="form-label">
+                    Ваш вопрос:
+                </label>
+                {{ form.question }}
+                {% if form.question.errors %}
+                <div class="form-errors">
+                    {{ form.question.errors }}
+                </div>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="form-submit-btn">
+                Отправить вопрос
+            </button>
+        </form>
+
+        <!-- Сообщение об успешной отправке (опционально) -->
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+</div>
 {% endblock %}

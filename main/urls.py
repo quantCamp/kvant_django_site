@@ -5,5 +5,5 @@ app_name = 'main'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('teachers/', include("teachers.urls"))
+    
 ]
