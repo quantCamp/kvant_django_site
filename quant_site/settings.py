@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'courses.apps.CoursesConfig',
     # Пользовательские приложения
     'main.apps.MainConfig',
+    'about.apps.AboutConfig',
     'faq.apps.FaqConfig',
     'gallery.apps.GalleryConfig',
     'schedule.apps.ScheduleConfig',
@@ -143,6 +144,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -21,8 +21,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-  
-    path('', include('main.urls')),# Маршрутизация на приложение main
+    path('', include('main.urls')),  # Маршрутизация на приложение main
+    path('', include('about.urls')),
     path('faq/', include('faq.urls')),     # Главная страница
     path('gallery/', include('gallery.urls')),
     path('schedule/', include('schedule.urls')),
