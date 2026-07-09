@@ -1,67 +1,58 @@
-/* ========================================
-   GALLERY.CSS — Стили для галереи
-   Полностью адаптирован под style.css
-   ======================================== */
+/* gallery.css - Стили для галереи альбомов ЛФМШ «Квант» */
 
-/* ----- 1. ЗАГОЛОВОК ГАЛЕРЕИ ----- */
-.gallery-header {
+.gallery-header, .album-detail-header {
     text-align: center;
-    margin-bottom: 2.5rem;
+    max-width: 700px;
+    margin: 0 auto 3rem;
 }
 
-.gallery-header h1 {
+.gallery-header h1, .album-detail-header h1 {
     font-size: 2.2rem;
     font-weight: 800;
     color: var(--text-main);
     letter-spacing: -0.025em;
+    margin-bottom: 0.5rem;
 }
 
-.gallery-header .subtitle {
-    font-size: 1.1rem;
+.gallery-header h1::after, .album-detail-header h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-color);
+    margin: 0.6rem auto 0;
+    border-radius: 2px;
+}
+
+.gallery-header .subtitle, .album-detail-header .album-meta {
     color: var(--text-muted);
-    margin-top: 0.3rem;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
 }
 
-/* ----- 2. СОРТИРОВКА (с подчёркиванием как в навигации) ----- */
+/* Сортировка */
 .sort-section {
     display: flex;
-    align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin: 1.5rem 0 2.5rem;
-    padding: 0.75rem 1.5rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius-md);
-    box-shadow: var(--shadow-sm);
-}
-
-.sort-label {
-    font-weight: 600;
-    color: var(--text-main);
-    font-size: 0.95rem;
-    margin-right: 0.5rem;
+    margin-bottom: 2.5rem;
 }
 
 .sort-options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    display: inline-flex;
+    background-color: #f1f5f9;
+    padding: 0.35rem;
+    border-radius: var(--border-radius-sm);
+    gap: 0.25rem;
 }
 
 .sort-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.45rem 0.75rem;
-    color: var(--text-muted);
     text-decoration: none;
+    color: var(--text-muted);
     font-size: 0.9rem;
-    font-weight: 500;
-    border-bottom: 2px solid transparent;
-    transition: all var(--transition-fast);
-    position: relative;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: all var(--transition-fast) ease-in-out;
 }
 
 .sort-link:hover {
@@ -69,51 +60,49 @@
 }
 
 .sort-link.active {
+    background-color: #ffffff;
     color: var(--primary-color);
-    border-bottom-color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
 }
 
-.sort-link.active:hover {
-    color: var(--primary-hover);
-    border-bottom-color: var(--primary-hover);
-}
-
-/* ----- 3. ПЛИТКА АЛЬБОМОВ (album_list) ----- */
+/* Сетка альбомов */
 .album-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0;
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
 .album-card {
-    background: var(--bg-card);
+    background-color: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius-md);
     overflow: hidden;
-    transition: all var(--transition-normal);
     box-shadow: var(--shadow-sm);
-    position: relative;
-    top: 0;
-}
-
-.album-card:hover {
-    top: -6px;
-    box-shadow: var(--shadow-lg);
-    border-color: rgba(59, 130, 246, 0.25);
+    transition: all var(--transition-normal);
 }
 
 .album-card a {
     text-decoration: none;
     color: inherit;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.album-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(59, 130, 246, 0.3);
 }
 
 .album-cover {
     position: relative;
-    padding-bottom: 75%;
+    width: 100%;
+    padding-top: 66.66%; /* 3:2 Aspect Ratio */
+    background-color: #f1f5f9;
     overflow: hidden;
-    background: var(--bg-app);
 }
 
 .album-cover img {
@@ -123,284 +112,143 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform var(--transition-normal);
+    transition: transform var(--transition-normal) ease-in-out;
 }
 
 .album-card:hover .album-cover img {
-    transform: scale(1.03);
+    transform: scale(1.05);
 }
 
 .album-overlay {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
-    padding: 1.25rem 1.25rem 0.75rem;
-    color: #ffffff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.photo-count {
-    font-size: 0.85rem;
-    font-weight: 500;
-    background: rgba(0, 0, 0, 0.35);
-    padding: 0.2rem 0.8rem;
-    border-radius: 50px;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: rgba(15, 23, 42, 0.75);
     backdrop-filter: blur(4px);
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow-sm);
 }
 
 .album-info {
-    padding: 1.25rem 1.25rem 1.5rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex-grow: 1;
 }
 
 .album-info h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.15rem;
+    font-weight: 700;
     color: var(--text-main);
-    margin: 0 0 0.3rem;
+    line-height: 1.3;
 }
 
 .album-date {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-muted);
-    margin: 0 0 0.5rem;
+    font-weight: 500;
 }
 
 .album-description {
     font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.5;
-    margin: 0;
+    margin-top: 0.25rem;
 }
 
-/* ----- 4. ДЕТАЛИ АЛЬБОМА (album_detail) ----- */
+/* Детальная страница альбома */
 .album-detail-header {
-    margin-bottom: 2.5rem;
+    position: relative;
 }
 
 .back-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    color: var(--text-muted);
     text-decoration: none;
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: var(--transition-fast);
-    margin-bottom: 1rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    transition: color var(--transition-fast);
 }
 
 .back-link:hover {
     color: var(--primary-color);
 }
 
-.album-detail-header h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 0.3rem;
-    letter-spacing: -0.025em;
-}
-
-.album-meta {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-bottom: 0.75rem;
-}
-
-.album-description {
-    color: var(--text-muted);
-    font-size: 1rem;
-    line-height: 1.7;
-    max-width: 700px;
-}
-
-/* ----- 5. СЕТКА ФОТОГРАФИЙ (album_detail) ----- */
+/* Сетка фотографий */
 .photo-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.25rem;
-    margin: 2rem 0;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
 .photo-item {
     position: relative;
-    border-radius: var(--border-radius-sm);
+    border-radius: var(--border-radius-md);
     overflow: hidden;
-    background: var(--bg-app);
-    border: 1px solid var(--border-color);
-    transition: all var(--transition-normal);
     box-shadow: var(--shadow-sm);
-}
-
-.photo-item:hover {
-    transform: scale(1.03);
-    box-shadow: var(--shadow-lg);
-    border-color: rgba(59, 130, 246, 0.2);
-    z-index: 2;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-card);
+    transition: all var(--transition-normal);
 }
 
 .photo-item a {
     display: block;
+    width: 100%;
+    padding-top: 75%; /* 4:3 Aspect Ratio */
     position: relative;
 }
 
 .photo-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 200px;
+    height: 100%;
     object-fit: cover;
-    display: block;
-    transition: transform var(--transition-normal);
+    transition: transform var(--transition-normal) ease-in-out;
+}
+
+.photo-item:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(59, 130, 246, 0.3);
 }
 
 .photo-item:hover img {
-    transform: scale(1.02);
+    transform: scale(1.03);
 }
 
 .photo-title {
     position: absolute;
     bottom: 0;
     left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
     color: #ffffff;
-    padding: 0.75rem 1rem 0.5rem;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 500;
+    padding: 1.5rem 1rem 0.75rem;
+    text-align: center;
     opacity: 0;
-    transition: opacity var(--transition-normal);
+    transition: opacity var(--transition-fast) ease-in-out;
 }
 
 .photo-item:hover .photo-title {
     opacity: 1;
 }
 
-/* ----- 6. ПУСТЫЕ СООБЩЕНИЯ ----- */
 .empty-message {
-    text-align: center;
-    padding: 4rem 1.5rem;
-    color: var(--text-muted);
-    font-size: 1.1rem;
     grid-column: 1 / -1;
-    background: var(--bg-card);
-    border-radius: var(--border-radius-md);
-    border: 1px dashed var(--border-color);
-}
-
-/* ----- 7. ПАГИНАЦИЯ (если понадобится) ----- */
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin: 2.5rem 0;
-}
-
-.pagination a {
-    padding: 0.5rem 1.25rem;
-    background: var(--bg-card);
-    color: var(--text-main);
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius-sm);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.9rem;
-    transition: all var(--transition-fast);
-}
-
-.pagination a:hover {
-    background: var(--primary-color);
-    color: #ffffff;
-    border-color: var(--primary-color);
-}
-
-.current-page {
-    font-weight: 600;
-    color: var(--text-main);
-    font-size: 0.95rem;
-}
-
-/* ----- 8. АДАПТИВ ----- */
-@media (max-width: 768px) {
-    .gallery-header h1 {
-        font-size: 1.7rem;
-    }
-
-    .sort-section {
-        flex-direction: column;
-        align-items: stretch;
-        padding: 0.75rem 1rem;
-    }
-
-    .sort-options {
-        justify-content: center;
-    }
-
-    .sort-link {
-        font-size: 0.8rem;
-        padding: 0.35rem 0.5rem;
-    }
-
-    .album-grid {
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 1rem;
-    }
-
-    .photo-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 0.75rem;
-    }
-
-    .photo-item img {
-        height: 150px;
-    }
-
-    .album-detail-header h1 {
-        font-size: 1.6rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .album-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
-    }
-
-    .photo-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 0.5rem;
-    }
-
-    .photo-item img {
-        height: 120px;
-    }
-
-    .album-info {
-        padding: 0.75rem;
-    }
-
-    .album-info h3 {
-        font-size: 0.95rem;
-    }
-
-    .album-date {
-        font-size: 0.75rem;
-    }
-
-    .album-description {
-        font-size: 0.8rem;
-        display: none;
-    }
-
-    .album-cover {
-        padding-bottom: 100%;
-    }
-
-    .sort-link {
-        font-size: 0.7rem;
-        padding: 0.25rem 0.4rem;
-    }
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-muted);
 }
