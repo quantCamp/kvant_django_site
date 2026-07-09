@@ -38,8 +38,8 @@
 
                 <div class="teachers-divider"></div>
 
-                {% if teacher.subject %}
-                <p class="teachers-subject">{{ teacher.subject }}</p>
+                {% if teacher.short_info %}
+                <p class="teachers-subject">{{ teacher.short_info }}</p>
                 {% endif %}
             </div>
             {% empty %}
