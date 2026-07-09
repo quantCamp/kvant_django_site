@@ -16,7 +16,7 @@
         </p>
         <div class="hero-actions">
             <a href="#" class="btn btn-primary disabled">Начать работу</a>
-            <a href="#" class="btn btn-outline disabled">Подробнее о школе</a>
+            <a href="{% url 'about:about' %}" class="btn btn-outline">Подробнее о школе</a>
         </div>
     </div>
 </section>
@@ -32,17 +32,7 @@
             <p class="card-text">
                 Следите за лекциями, семинарами, спортивными турнирами и вечерними мероприятиями школы. Будьте в курсе всех событий!
             </p>
-            <a href="#" class="card-link disabled">Перейти к расписанию &rarr;</a>
-        </div>
-
-        <!-- Карточка 2: Профиль -->
-        <div class="card">
-            <div class="card-icon card-icon-green">👤</div>
-            <h3 class="card-title">Профиль</h3>
-            <p class="card-text">
-                Личный кабинет участника. Здесь можно увидеть информацию о своем отряде, заработанных баллах и достижениях.
-            </p>
-            <a href="#" class="card-link disabled">Войти в профиль &rarr;</a>
+            <a href="{% url 'schedule:schedule_view' %}" class="card-link">Перейти к расписанию &rarr;</a>
         </div>
 
         <!-- Карточка 3: Новости -->
@@ -62,7 +52,26 @@
             <p class="card-text">
                 История «Кванта», наши традиции, педагогический состав, информация для родителей и контакты организаторов.
             </p>
-            <a href="#" class="card-link disabled">Узнать больше &rarr;</a>
+            <a href="{% url 'about:about' %}" class="card-link">Узнать больше &rarr;</a>
+        </div>
+
+        <div class="card">
+            <div class="card-icon card-icon-blue">📚</div>
+            <h3 class="card-title">Курсы</h3>
+            <p class="card-text">
+                Ознакомьтесь с нашими учебными программами, направлениями обучения и преподавательским составом лагеря.
+            </p>
+            <a href="{% url 'courses:course_list' %}" class="card-link">
+                Смотреть курсы →
+            </a>
+
+        <div class="card">
+            <div class="card-icon card-icon-purple">📚</div>
+            <h3 class="card-title">Полезные материалы</h3>
+            <p class="card-text">
+                Ссылки на полезные материалы для веб-разработки на Django, некоторые можно скачать.
+            </p>
+            <a href="/library/" class="card-link">Смотреть материалы &rarr;</a>
         </div>
     </div>
 </section>

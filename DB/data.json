@@ -1,0 +1,200 @@
+[
+  {
+    "model": "library.category",
+    "pk": 1,
+    "fields": {
+      "name": "Фронтенд разработка"
+    }
+  },
+  {
+    "model": "library.category",
+    "pk": 2,
+    "fields": {
+      "name": "Бэкенд разработка"
+    }
+  },
+  {
+    "model": "library.category",
+    "pk": 3,
+    "fields": {
+      "name": "Базы данных"
+    }
+  },
+  {
+    "model": "library.category",
+    "pk": 4,
+    "fields": {
+      "name": "DevOps"
+    }
+  },
+  {
+    "model": "library.category",
+    "pk": 5,
+    "fields": {
+      "name": "Алгоритмы и структуры данных"
+    }
+  },
+  {
+    "model": "library.category",
+    "pk": 6,
+    "fields": {
+      "name": "Можно скачать"
+    }
+  },
+  {
+    "model": "library.material",
+    "pk": 1,
+    "fields": {
+      "title": "React Документация",
+      "description": "Официальная документация React",
+      "material_type": "link",
+      "link": "https://react.dev/",
+      "file": null,
+      "category": 1
+    }
+  },
+  {
+    "model": "library.material",
+    "pk": 1,
+    "fields": {
+      "title": "HTML Документация",
+      "description": "Документация HTML, сгенерированная DeepSeek",
+      "material_type": "file",
+      "link": null,
+      "file": "materials/html.md",
+      "category": 6
+    }
+  },
+  {
+    "model": "library.material",
+    "pk": 2,
+    "fields": {
+      "title": "Django Руководство",
+      "description": "Официальная документация Django",
+      "material_type": "link",
+      "link": "https://docs.djangoproject.com/",
+      "file": null,
+      "category": 2
+    }
+  },
+  {
+    "model": "library.material",
+    "pk": 3,
+    "fields": {
+      "title": "PostgreSQL Документация",
+      "description": "Официальная документация PostgreSQL",
+      "material_type": "link",
+      "link": "https://www.postgresql.org/docs/",
+      "file": null,
+      "category": 3
+    }
+  },
+  {
+    "model": "library.material",
+    "pk": 4,
+    "fields": {
+      "title": "Docker Документация",
+      "description": "Официальная документация Docker",
+      "material_type": "link",
+      "link": "https://docs.docker.com/",
+      "file": null,
+      "category": 4
+    }
+  },
+  {
+    "model": "library.material",
+    "pk": 5,
+    "fields": {
+      "title": "Git Лучшие практики",
+      "description": "Руководство по работе с Git",
+      "material_type": "link",
+      "link": "https://git-scm.com/book/ru/",
+      "file": null,
+      "category": 1
+    }
+  },
+  {
+    "model": "library.material",
+    "pk": 6,
+    "fields": {
+      "title": "Python Документация",
+      "description": "Официальная документация Python",
+      "material_type": "link",
+      "link": "https://docs.python.org/",
+      "file": null,
+      "category": 2
+    }
+  },
+  {
+    "model": "library.material",
+    "pk": 7,
+    "fields": {
+      "title": "MongoDB Введение",
+      "description": "Основы работы с MongoDB",
+      "material_type": "link",
+      "link": "https://www.mongodb.com/docs/",
+      "file": null,
+      "category": 3
+    }
+  },
+  {
+    "model": "library.material",
+    "pk": 8,
+    "fields": {
+      "title": "Kubernetes Основы",
+      "description": "Введение в Kubernetes",
+      "material_type": "link",
+      "link": "https://kubernetes.io/docs/",
+      "file": null,
+      "category": 4
+    }
+  },
+  {
+    "model": "library.material",
+    "pk": 9,
+    "fields": {
+      "title": "Алгоритмы на JavaScript",
+      "description": "Популярные алгоритмы с примерами на JavaScript",
+      "material_type": "link",
+      "link": "https://github.com/trekhleb/javascript-algorithms",
+      "file": null,
+      "category": 5
+    }
+  },
+  {
+    "model": "library.material",
+    "pk": 10,
+    "fields": {
+      "title": "REST API Лучшие практики",
+      "description": "Рекомендации по проектированию REST API",
+      "material_type": "link",
+      "link": "https://restfulapi.net/",
+      "file": null,
+      "category": 2
+    }
+  },
+  {
+    "model": "library.material",
+    "pk": 11,
+    "fields": {
+      "title": "SQL Шпаргалка",
+      "description": "Основные SQL запросы",
+      "material_type": "link",
+      "link": "https://www.sqltutorial.org/sql-cheat-sheet/",
+      "file": null,
+      "category": 3
+    }
+  },
+  {
+    "model": "library.material",
+    "pk": 12,
+    "fields": {
+      "title": "NGINX Документация",
+      "description": "Официальная документация NGINX",
+      "material_type": "link",
+      "link": "https://nginx.org/en/docs/",
+      "file": null,
+      "category": 4
+    }
+  }
+]

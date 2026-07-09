@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Детальное описание события{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/schedule_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="schedule-detail-container">
+    <h1>{{ scheduleItem.event_name }}</h1>
+    <div class="schedule-full-description">
+        <p>{{ scheduleItem.detailed_description }}</p>
+    </div>
+    <a href="{% url 'schedule:schedule_view' %}" class="btn-back">&larr; Назад к расписанию</a>
+</div>
+{% endblock %}

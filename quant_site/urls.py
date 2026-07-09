@@ -17,6 +17,8 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 from quant_site import settings
 
@@ -24,4 +26,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),  # Маршрутизация на приложение main
     path('news/', include("news.urls"), name='news')
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('faq/', include('faq.urls')),     # Главная страница
+    path('gallery/', include('gallery.urls')),
+    path('schedule/', include('schedule.urls')),
+    path('library/', include('library.urls')),
+    path('courses/', include('courses.urls', namespace='courses')),
+    path('teachers/', include("teachers.urls"))  # Маршрутизация на приложение main # Маршрутизация на приложение main
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>  
+<html>
+    <head>
+        {% block style %}{% endblock %}
+        <meta charset="UTF-8">
+        <title>{% block title %}  {% endblock %}</title>
+    </head>
+    <body>
+        <header>
+
+                <img width="90px" src = '{% static "kvant-logo.png" %}' alt="Логотип">
+                <!-- <span>Лагерь Квант</span> -->
+        </header>
+         {% block content %} {% endblock %}
+         <footer>
+            <ul>
+            <h3>О НАС</h3>
+            <li>|kvant@mail.ru|</li>  
+            </ul>
+            
+         </footer>
+    </body>
+</html>
