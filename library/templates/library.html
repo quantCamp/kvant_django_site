@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}ЛФМШ «Квант» — Категории{% endblock %}
+{% block content %}
+    <h2 class="section-title" style="text-align: left; margin-bottom: 2rem;">Категории:</h2>
+
+    <ul style="margin-left: 0; list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+        {% for category in categories %}
+        <li style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--border-radius-md); padding: 2rem; transition: all var(--transition-normal);">
+            <a href="/library/{{ category.id }}" style="text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 1.1rem; display: block; transition: var(--transition-fast);">
+                {{ category.name }}
+                <span style="display: block; font-weight: 400; font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Перейти к материалам →</span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
