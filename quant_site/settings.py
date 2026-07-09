@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     
     # Пользовательские приложения
     'main.apps.MainConfig',
+    'faq.apps.FaqConfig',
     'gallery.apps.GalleryConfig',
     'schedule.apps.ScheduleConfig',
     "library.apps.LibraryConfig"
