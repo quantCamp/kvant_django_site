@@ -4,7 +4,7 @@
 {% block title %}{{ course.title }} — Летняя школа «Квант»{% endblock %}
 
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'courses/css/courses.css' %}">
+<link rel="stylesheet" href="{% static '/css/courses.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -38,9 +38,9 @@
                 <span class="teacher-name" style="color: var(--primary-color); font-weight: 600; display: block; margin-bottom: 0.25rem;">
                     {{ teacher.name }}
                 </span>
-                <a href="{% url 'teachers:teacher_detail' teacher.pk %}" class="teacher-name-link" style="text-decoration: none; color: var(--primary-color); font-weight: 600; display: block; margin-bottom: 0.25rem;">
+                <a href="/teachers/{{ teacher.pk }}" class="teacher-name-link" style="text-decoration: none; color: var(--primary-color); font-weight: 600; display: block; margin-bottom: 0.25rem;">
 
-                <div class="teacher-bio">{{ teacher.bio|default:"Наставник летней школы «Квант»" }}</div>
+                <div class="teacher-bio">{{ teacher.first_name }} {{ teacher.patronymic }}</div>
             </div>
             {% empty %}
             <p style="color: var(--text-muted); font-size: 0.875rem;">Преподаватели скоро будут назначены.</p>

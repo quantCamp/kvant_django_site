@@ -23,9 +23,9 @@
 
     <!-- Курс (предмет / дисциплина) -->
     <div class="info-field">
-      <span class="label">📚 Курс</span>
+      <span class="label">📚 Курсы</span>
       {% for course in courses %}
-      <span class="value" id="teacherCourse">{{ course.title }}</span>
+      <a href="/courses/{{ course.id }}"><span class="value" id="teacherCourse">{{ course.title }}</span></a>
       {% endfor %}
     </div>
 
