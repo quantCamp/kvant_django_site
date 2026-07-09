@@ -1,0 +1,82 @@
+
+        /*!* Специфичные стили для FAQ, чтобы не ломать основной CSS *!*/
+        /*.faq-section {*/
+        /*    padding-bottom: 4rem;*/
+        /*}*/
+
+        /*.category-title {*/
+        /*    font-size: 1.8rem;*/
+        /*    font-weight: 700;*/
+        /*    margin-top: 3rem;*/
+        /*    margin-bottom: 1.5rem;*/
+        /*    color: var(--text-main);*/
+        /*    position: relative;*/
+        /*    padding-left: 1rem;*/
+        /*    border-left: 4px solid var(--primary-color);*/
+        /*}*/
+
+
+        /*!* Карточка вопроса-ответа *!*/
+        /*.qa-card {*/
+        /*    background-color: var(--bg-card);*/
+        /*    border: 1px solid var(--border-color);*/
+        /*    border-radius: var(--border-radius-md);*/
+        /*    box-shadow: var(--shadow-sm);*/
+        /*    margin-bottom: 1rem;*/
+        /*    overflow: hidden;*/
+        /*    transition: all var(--transition-normal);*/
+        /*    cursor: pointer;*/
+        /*}*/
+
+        /*.qa-card:hover {*/
+        /*    transform: translateY(-2px);*/
+        /*    box-shadow: var(--shadow-md);*/
+        /*    border-color: var(--primary-color);*/
+        /*}*/
+
+        /*.qa-header {*/
+        /*    padding: 1.25rem 1.5rem;*/
+        /*    display: flex;*/
+        /*    justify-content: space-between;*/
+        /*    align-items: center;*/
+        /*}*/
+
+        /*.question-text {*/
+        /*    font-size: 1.1rem;*/
+        /*    font-weight: 600;*/
+        /*    color: var(--text-main);*/
+        /*    line-height: 1.4;*/
+        /*}*/
+
+        /*.toggle-icon {*/
+        /*    font-size: 1.2rem;*/
+        /*    color: var(--primary-color);*/
+        /*    transition: transform var(--transition-fast);*/
+        /*    flex-shrink: 0;*/
+        /*}*/
+
+        /*.qa-card.active .toggle-icon {*/
+        /*    transform: rotate(180deg);*/
+        /*}*/
+
+        /*.answer-content {*/
+        /*    max-height: 0;*/
+        /*    opacity: 0;*/
+        /*    overflow: hidden;*/
+        /*    background-color: #f8fafc; !* Чуть светлее фона карточки *!*/
+        /*    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;*/
+        /*    border-top: 1px solid var(--border-color);*/
+        /*}*/
+
+        /*.answer-text {*/
+        /*    padding: 1.25rem 1.5rem;*/
+        /*    color: var(--text-muted);*/
+        /*    font-size: 0.95rem;*/
+        /*    line-height: 1.6;*/
+        /*}*/
+
+        /*!* Если нужно показать все ответы сразу (без аккордеона) *!*/
+        /*.qa-card.show-all .answer-content {*/
+        /*    max-height: 500px;*/
+        /*    opacity: 1;*/
+        /*}*/

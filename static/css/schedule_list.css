@@ -1,0 +1,129 @@
+h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.025em;
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-color);
+    margin-top: 0.6rem;
+    border-radius: 2px;
+}
+
+/* Обертка для таблицы скролла на мобильных устройствах */
+.modern-schedule-wrapper {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-md);
+    overflow-x: auto; /* Позволяет таблице скроллиться вбок на смартфонах */
+    transition: var(--transition-normal);
+}
+
+.modern-schedule-wrapper:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+/* Основные стили таблицы */
+.modern-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+/* Шапка таблицы */
+.modern-table th {
+    background-color: #fafafa;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    padding: 1.1rem 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+/* Ячейки тела таблицы */
+.modern-table td {
+    padding: 1.1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-main);
+    vertical-align: middle;
+    transition: background-color var(--transition-fast);
+}
+
+/* Стилизация интерактивных строк */
+.modern-table tbody tr {
+    transition: all var(--transition-fast);
+}
+
+.modern-table tbody tr:hover {
+    background-color: rgba(59, 130, 246, 0.04); /* Очень нежная подсветка фирменным синим цветом */
+}
+
+.modern-table tbody tr:active {
+    background-color: rgba(59, 130, 246, 0.08);
+}
+
+/* Последняя строка убирает нижнюю границу, чтобы не портить скругление обертки */
+.modern-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Стили для отдельных колонок */
+
+/* Колонка № (Порядковый номер) */
+.schedule-order {
+    font-weight: 700;
+    color: var(--primary-color);
+    width: 60px;
+    text-align: center;
+}
+
+/* Колонки Времени */
+.schedule-time_start,
+.schedule-time_end {
+    font-weight: 500;
+    color: var(--text-main);
+    white-space: nowrap; /* Время не будет переноситься на новую строку */
+    width: 160px;
+}
+
+/* Колонка Названия мероприятия */
+.schedule-event_name {
+    font-weight: 600;
+    color: var(--text-main);
+    width: 250px;
+}
+
+/* Колонка Короткого описания */
+.schedule-short_description {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    max-width: 400px;
+
+    /* Текст теперь переносится на новые строки */
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+}
+/* Адаптивность для мобильных экранов */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .modern-table th, 
+    .modern-table td {
+        padding: 0.85rem 1rem;
+    }
+}

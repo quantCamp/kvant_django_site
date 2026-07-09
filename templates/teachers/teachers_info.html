@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ teacher.first_name }} {% endblock %}
+
+{% load static %}
+
+{% block content %} 
+<div class="teacher-card" role="main" aria-label="Карточка учителя">
+    
+    <!-- аватар / инициалы -->
+    <div class="avatar">
+      <div class="avatar-circle">
+        <span class="label">💡 Аватар:</span>
+        <img src="{{ teacher.photo.url }}" alt="Логотип" width="110px">
+      </div>
+    </div>
+
+    <!-- Имя -->
+    <div class="info-field">
+      <span class="label">👤 ФИО</span>
+      <span class="value" id="teacherName">{{ teacher.first_name }} {{ teacher.patronymic }} {{ teacher.last_name }}</span>
+    </div>
+
+    <!-- Курс (предмет / дисциплина) -->
+    <div class="info-field">
+      <span class="label">📚 Курсы</span>
+      {% for course in courses %}
+      <a href="/courses/{{ course.id }}"><span class="value" id="teacherCourse">{{ course.title }}</span></a>
+      {% endfor %}
+    </div>
+
+    <div class="info-field">
+      <span class="label">📜 Биография</span>
+      <span class="value age-value" id="teacherAge">
+        {{ teacher.bio }}
+      </span>
+    </div>
+
+    <!-- Возраст -->
+    <div class="info-field">
+        <span class="label">🎂 Возраст</span>
+        <span class="value age-value" id="teacherAge">
+            {{ teacher.age }} <small>лет</small>
+        </span>
+    </div>
+
+    <div class="info-field">
+      <span class="label">📧 Email</span>
+      <span class="value age-value" id="teacherAge">
+        {{ teacher.contact_email }}
+      </span>
+    </div>
+
+    <!-- декоративный элемент + маленький бейдж (необязательно, но добавляет акцент) -->
+    <div class="badge-row">
+        <span class="badge">⭐ преподаватель</span>
+    </div>
+
+    <div class="divider-light"></div>
+
+    <!-- ФОРМА ДЛЯ ВОПРОСА -->
+    <div class="question-section">
+        <h3 class="question-title">✉️ Задать вопрос {{ teacher.first_name }}</h3>
+        
+        <form method="post" class="question-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="{{ form.question.id_for_label }}" class="form-label">
+                    Ваш вопрос:
+                </label>
+                {{ form.question }}
+                {% if form.question.errors %}
+                <div class="form-errors">
+                    {{ form.question.errors }}
+                </div>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="form-submit-btn">
+                Отправить вопрос
+            </button>
+        </form>
+
+        <!-- Сообщение об успешной отправке (опционально) -->
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}
