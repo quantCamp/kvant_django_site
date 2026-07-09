@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Распорядок дня в "Кванте"{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/schedule_list.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Распорядок дня</h1>
+    <div class="modern-schedule-wrapper">
+        <table class="modern-table">
+            <thead>
+            <tr>
+                <th>№</th>
+                <th>Начало мероприятия</th>
+                <th>Конец мероприятия</th>
+                <th>Название мероприятия</th>
+                <th>Короткое описание мероприятия</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for scheduleItem in scheduleItems %}
+            <tr onclick="window.location.href='/schedule/{{ scheduleItem.id }}';" style="cursor: pointer;">
+                <td class="schedule-order">{{ scheduleItem.order }}</td>
+                <td class="schedule-time_start">{{ scheduleItem.time_start }}</td>
+                <td class="schedule-time_end">{{ scheduleItem.time_end }}</td>
+                <td class="schedule-event_name">{{ scheduleItem.event_name }}</td>
+                <td class="schedule-short_description">{{ scheduleItem.short_description }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endblock %}
