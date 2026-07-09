@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     
     # Пользовательские приложения
     'main.apps.MainConfig',
+    'teachers',
+    'courses',
 ]
 
 MIDDLEWARE = [

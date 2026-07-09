@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Курсы — Летняя школа «Квант»{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'courses/css/courses.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1 class="section-title">Наши учебные курсы</h1>
+
+<div class="courses-grid">
+    {% for course in courses %}
+    <div class="course-card">
+        <div class="course-icon-wrapper">
+            {{ course.icon }}
+        </div>
+        <h3 class="course-title">{{ course.title }}</h3>
+        <p class="course-text">{{ course.short_description }}</p>
+
+        <div class="course-teachers-preview" style="margin-bottom: 1.5rem; border-top: 1px dashed var(--border-color); padding-top: 0.75rem;">
+            <strong style="font-size: 0.85rem; color: var(--text-main); display: block; margin-bottom: 0.25rem;">👨‍🏫 Преподаватели:</strong>
+            <div style="font-size: 0.85rem; color: var(--text-muted);">
+                {% for teacher in course.teachers.all %}
+                    {{ teacher.name }}{% if not forloop.last %}, {% endif %}
+                {% empty %}
+                    Не назначены
+                {% endfor %}
+            </div>
+        </div>
+
+        <a href="{% url 'courses:course_detail' course.pk %}" class="btn btn-primary course-btn">
+            Подробнее
+        </a>
+    </div>
+    {% empty %}
+    <div style="grid-column: 1/-1; text-align: center; padding: 3rem 0; color: var(--text-muted);">
+        Курсы находятся в процессе наполнения. Загляните позже!
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
