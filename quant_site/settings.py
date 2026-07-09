@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     
     # Пользовательские приложения
     'main.apps.MainConfig',
+    'gallery.apps.GalleryConfig'
 ]
 
 MIDDLEWARE = [
