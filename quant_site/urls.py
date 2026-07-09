@@ -19,6 +19,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('main.urls')),  # Маршрутизация на приложение main
-    path('library/', include('library.urls')),
+
+    path('', include('main.urls')),
+    path('schedule/', include('schedule.urls')),
+    path('library/', include('library.urls'))
+
 ]
