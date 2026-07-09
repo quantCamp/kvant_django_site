@@ -1,11 +1,36 @@
-{% load static %}
-{% extends 'base.html'%}
-{% block title %}Новости{% endblock %}
+{% extends "base.html" %}
 
-{% block extra_head %}
-<link rel="stylesheet" href="{% static 'css/news_details.css' %}">{% endblock %}
+
+{% load static %}
+
+{% block title %}{{ new.title }}{% endblock %}
+{% block extra_head %}<link rel="stylesheet" href="{% static 'css/news_detail.css' %}">{% endblock %}
+
 
 {% block content %}
+<article class="news-detail-block">
+    <img src="{{ new.img.url }}" alt="Изображение к новости">
+    <h1 class="news-detail-title">{{ new.title }}</h1>
+    <p class="news-detail-text">{{ new.text }}</p>
+</article>
 
+<!-- Форма добавления комментариев -->
 
+<!-- Комментарии -->
+{% for comment in comments %}
+    <li class="news-comment-item">
+        <h1 class="news-comment-text">{{ comment.text }}</h1>
+        <p class="news-comment-date">{{ comment.created_at }}</p>
+    </li>
+{% endfor %}
+
+<section class="news-form-section">
+    <form class="news-comment-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="news-submit-btn" type="submit">
+            Отправить комментарий
+        </button>
+    </form>
+</section>
 {% endblock %}
