@@ -1,123 +1,47 @@
+{% extends 'base.html' %}
 {% load static %}
+{% block title %}Новости{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/news_add.css' %}">
+{% endblock %}
+{% block content %}
+<section class="news-add-section">
+  <div class="form-container">
+    <h2 class="form-title">Добавить новость</h2>
+    <form method="post" enctype="multipart/form-data" class="news-form">
+      {% csrf_token %}
 
+      <!-- Поле заголовка -->
+      <div class="form-group">
+        <label for="id_title">Заголовок</label>
+        <input type="text" name="title" id="id_title"
+               class="form-control" placeholder="Введите заголовок новости" required>
+      </div>
 
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Новости - Добавить</title>
-    <link rel="stylesheet" href="{% static 'css/news_add.css' %}">
-</head>
-<body>
-    <div class="container">
-        <!-- Шапка -->
-        <header class="header">
-            <a href="news_list.html" class="logo">
-                <i class="fas fa-newspaper"></i>
-                <h1>Новости</h1>
-            </a>
-            <nav class="nav-links">
-                <a href="news_list.html"><i class="fas fa-list"></i> Список</a>
-                <a href="news_detail.html"><i class="fas fa-eye"></i> Детали</a>
-                <a href="news_add.html" class="active btn-add"><i class="fas fa-plus"></i> Добавить</a>
-            </nav>
-        </header>
+      <!-- Поле текста -->
+      <div class="form-group">
+        <label for="id_text">Текст новости</label>
+        <textarea name="text" id="id_text" rows="8"
+                  class="form-control" placeholder="Напишите подробности..." required></textarea>
+      </div>
 
-        <!-- Форма добавления -->
-        <div class="form-container">
-            <h2><i class="fas fa-pen-fancy"></i> Добавить новость</h2>
-            <p class="subtitle">Заполните все поля, чтобы опубликовать новость на сайте.</p>
-
-            <!-- Уведомление (демо) -->
-            <div class="alert">
-                <i class="fas fa-info-circle"></i>
-                <span>Все поля, отмеченные <strong>*</strong>, обязательны для заполнения.</span>
-            </div>
-
-            <form id="newsForm" onsubmit="event.preventDefault(); alert('Новость успешно добавлена! (демо-режим)');">
-                <!-- Заголовок -->
-                <div class="form-group">
-                    <label for="title">Заголовок <span class="required">*</span></label>
-                    <input type="text" id="title" placeholder="Введите заголовок новости..." required>
-                </div>
-
-                <!-- Категория и статус -->
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="category">Категория <span class="required">*</span></label>
-                        <select id="category" required>
-                            <option value="">Выберите категорию...</option>
-                            <option value="politics">Политика</option>
-                            <option value="economy">Экономика</option>
-                            <option value="tech">Технологии</option>
-                            <option value="sport">Спорт</option>
-                            <option value="culture">Культура</option>
-                            <option value="science">Наука</option>
-                            <option value="society">Общество</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="status">Статус <span class="required">*</span></label>
-                        <select id="status" required>
-                            <option value="published">Опубликовано</option>
-                            <option value="draft">Черновик</option>
-                            <option value="archived">Архив</option>
-                        </select>
-                    </div>
-                </div>
-
-                <!-- Краткое описание -->
-                <div class="form-group">
-                    <label for="excerpt">Краткое описание <span class="required">*</span></label>
-                    <input type="text" id="excerpt" placeholder="Краткий анонс новости (до 160 символов)" required>
-                    <div class="hint"><i class="fas fa-info-circle"></i> Будет отображаться в списке новостей</div>
-                </div>
-
-                <!-- Полный текст -->
-                <div class="form-group">
-                    <label for="content">Полный текст <span class="required">*</span></label>
-                    <textarea id="content" placeholder="Введите полный текст новости..." required></textarea>
-                    <div class="hint"><i class="fas fa-info-circle"></i> Поддерживается базовое форматирование</div>
-                </div>
-
-                <!-- Изображение (заглушка) -->
-                <div class="form-group">
-                    <label for="image">URL изображения</label>
-                    <input type="text" id="image" placeholder="https://example.com/image.jpg">
-                    <div class="hint"><i class="fas fa-info-circle"></i> Добавьте ссылку на изображение для новости</div>
-                </div>
-
-                <!-- Автор -->
-                <div class="form-group">
-                    <label for="author">Автор <span class="required">*</span></label>
-                    <input type="text" id="author" placeholder="Ваше имя" required>
-                </div>
-
-                <!-- Кнопки -->
-                <div class="form-actions">
-                    <button type="submit" class="btn-submit">
-                        <i class="fas fa-paper-plane"></i> Опубликовать
-                    </button>
-                    <button type="button" class="btn-preview" onclick="alert('Предпросмотр новости (демо-режим)');">
-                        <i class="fas fa-eye"></i> Предпросмотр
-                    </button>
-                    <button type="button" class="btn-cancel" onclick="window.location.href='news_list.html'">
-                        <i class="fas fa-times"></i> Отмена
-                    </button>
-                </div>
-            </form>
+      <!-- Поле загрузки изображения -->
+      <div class="form-group">
+        <label for="id_img">Изображение</label>
+        <div class="file-upload-wrapper">
+          <input type="file" name="img" id="id_img" accept="image/*" class="file-input" required>
+          <label for="id_img" class="file-label">
+            <span class="file-icon">📎</span>
+            <span class="file-text">Выберите файл</span>
+          </label>
+          <span class="file-name" id="file-name">Файл не выбран</span>
         </div>
+        <small class="form-hint">Поддерживаются JPEG, PNG, GIF. Максимальный размер 5 МБ.</small>
+      </div>
 
-        <!-- Футер -->
-        <footer class="footer">
-            <span>&copy; 2026 Новости. Все права защищены.</span>
-            <div>
-                <a href="#"><i class="fas fa-info-circle"></i> О нас</a>
-                <a href="#"><i class="fas fa-envelope"></i> Контакты</a>
-                <a href="#"><i class="fas fa-shield-alt"></i> Политика</a>
-            </div>
-        </footer>
-    </div>
-</body>
-</html>
+      <!-- Кнопка отправки -->
+      <button type="submit" class="submit-btn">Опубликовать</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

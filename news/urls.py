@@ -9,4 +9,3 @@ urlpatterns = [
     path('detail/<int:news_id>', views.news_detail , name='detail'),
     path('add/', views.news_add, name='add')
 ]
-
