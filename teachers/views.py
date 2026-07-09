@@ -23,5 +23,5 @@ def teacher_description(request, teacher_id):
     else:
         form = TeacherFD()
     if teacher is not None:
-       return render(request, './teachers/teachers_info.html', context={'teacher': teacher, 'course': coursesy, 'form':form})
+       return render(request, './teachers/teachers_info.html', context={'teacher': teacher, 'courses': coursesy, 'form':form})
 
