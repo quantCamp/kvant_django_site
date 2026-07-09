@@ -1,105 +1,110 @@
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
+/* ============================================
+   ИЗОЛИРОВАННЫЙ БЛОК СТИЛЕЙ ДЛЯ НОВОСТЕЙ
+   Все стили "привязаны" к .content-wrapper
+   чтобы не конфликтовать с header/footer
+   ============================================ */
 
-        /* 2. Карточка новости — наследуем от .card, но адаптируем */
-        .news-card {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius-md);
-            overflow: hidden;
-            transition: all var(--transition-normal);
-            box-shadow: var(--shadow-sm);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            position: relative;
-            top: 0;
-        }
+/* ----- ОБЩИЙ КОНТЕЙНЕР (сетка) ----- */
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    background: transparent; /* Прозрачный фон, чтобы не перекрывать фон body */
+}
 
-        .news-card:hover {
-            top: -6px;
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(59, 130, 246, 0.3);
-        }
+/* ----- КАРТОЧКА НОВОСТИ ----- */
+.content-wrapper .news-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    border: 1px solid #f0f0f0;
+}
 
-        /* 3. Ссылка внутри карточки — занимает всю площадь */
-        .news-card-link {
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
+.content-wrapper .news-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
 
-        /* 4. Изображение — ОДИНАКОВЫЙ РАЗМЕР для всех! */
-        .news-card-link img {
-            width: 100%;
-            height: 220px; /* Фиксированная высота для одинакового размера */
-            object-fit: cover; /* Сохраняет пропорции, обрезая лишнее */
-            display: block;
-            background-color: #e9edf2; /* Цвет-заполнитель */
-            transition: transform var(--transition-normal);
-        }
+/* ----- ССЫЛКА (вся карточка кликабельна) ----- */
+.content-wrapper .news-card a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 0 0 20px 0; /* Отступы только снизу, сверху картинка без отступа */
+}
 
-        /* Лёгкое увеличение картинки при наведении */
-        .news-card:hover .news-card-link img {
-            transform: scale(1.03);
-        }
+/* ----- ИЗОБРАЖЕНИЕ ----- */
+.content-wrapper .news-card img {
+    width: 280px;  /* Фиксированная ширина */
+    height: 200px; /* Фиксированная высота */
+    object-fit: cover; /* Обрезает лишнее, сохраняя пропорции */
+    object-position: center; /* Центрирует обрезку */
+    display: block;
+    background: #e9ecef;
+    border-bottom: 1px solid #eee;
+    flex-shrink: 0; /* Чтобы не сжималась в гриде */
+}
 
-        /* 5. Заголовок новости */
-        .news-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-main);
-            padding: 1rem 1.25rem 0.25rem 1.25rem;
-            line-height: 1.4;
-            transition: color var(--transition-fast);
-            margin: 0;
-        }
+/* ----- ЗАГОЛОВОК (H2) ----- */
+.content-wrapper .news-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 16px 20px 8px 20px;
+    line-height: 1.4;
+    font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    /* Сброс глобальных стилей h2, если они есть */
+    letter-spacing: normal;
+    text-transform: none;
+    border: none;
+    background: transparent;
+}
 
-        .news-card-link:hover .news-title {
-            color: var(--primary-color);
-        }
+/* ----- ТЕКСТ НОВОСТИ (ЗАМЕНА <h4> НА <p>) ----- */
+.content-wrapper .news-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #4a4a5a;
+    margin: 0 20px 12px 20px;
+    font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    /* Сбрасываем возможные стили h4 */
+    text-transform: none;
+    letter-spacing: normal;
+}
 
-        /* 6. Текст новости (обрезанный до 200 символов) */
-        .news-text {
-            font-size: 0.925rem;
-            color: var(--text-muted);
-            padding: 0.25rem 1.25rem 1.25rem 1.25rem;
-            line-height: 1.6;
-            flex-grow: 1;
-            margin: 0;
-        }
+/* ----- АДАПТАЦИЯ ПОД ПЛАНШЕТЫ ----- */
+@media (max-width: 768px) {
+    .content-wrapper {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+        padding: 20px 15px;
+    }
+    .content-wrapper .news-title {
+        font-size: 1.1rem;
+        margin: 14px 16px 6px 16px;
+    }
+    .content-wrapper .news-text {
+        font-size: 0.9rem;
+        margin: 0 16px 10px 16px;
+    }
+}
 
-        /* 7. Бейдж/метка "Новость" (опционально) */
-        .news-badge {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: #ffffff;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 0.2rem 0.75rem;
-            border-radius: 20px;
-            margin: 0 1.25rem 0.5rem 1.25rem;
-            align-self: flex-start;
-        }
-
-        /* 8. Стили для секции с новостями (контейнер) */
-        .news-section {
-            margin: 2rem 0;
-        }
-
-        .news-section .section-title {
-            text-align: left;
-            margin-bottom: 1.5rem;
-        }
-
-        .news-section .section-title::after {
-            margin: 0.5rem 0 0 0;
-        }
+/* ----- АДАПТАЦИЯ ПОД ТЕЛЕФОНЫ ----- */
+@media (max-width: 480px) {
+    .content-wrapper {
+        grid-template-columns: 1fr;
+        padding: 15px 12px;
+    }
+    .content-wrapper .news-card img {
+        height: 180px;
+    }
+    .content-wrapper .news-title {
+        font-size: 1.05rem;
+    }
+}

@@ -5,16 +5,18 @@
 <link rel="stylesheet" href="{% static 'css/news_list.css' %}">
 {% endblock %}
 {% block content %}
-{% for item in news_listik %}
+<a href="/news/add">Добавить новость</a>
 
-<section>
-    <a href="/news/<int:pk>/)">
-        <img src="{{ item.img.url }}">
-        <h2>{{ item.title }}</h2>
-        <h4>{{ item.text|truncatechars:200 }}</h4>
-    </a>
-</section>
-
-{% endfor %}
+<div class="content-wrapper"> <!-- ВАЖНО: добавлена обертка -->
+    {% for item in news %}
+    <section class="news-card">
+        <a href="/news/detail/{{ item.pk }}"> <!-- Исправлена ссылка -->
+            <img src="{{ item.img.url }}" alt="{{ item.title }}">
+            <h2 class="news-title">{{ item.title }}</h2>
+            <p class="news-text">{{ item.text|truncatechars:200 }}</p> <!-- Исправлен <h4> на <p> -->
+        </a>
+    </section>
+    {% endfor %}
+</div>
 
 {% endblock %}
