@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Новости{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/news_list.css' %}">
+{% endblock %}
+{% block content %}
+<a href="/news/add">Добавить новость</a>
+
+<div class="content-wrapper"> <!-- ВАЖНО: добавлена обертка -->
+    {% for item in news %}
+    <section class="news-card">
+        <a href="/news/detail/{{ item.pk }}"> <!-- Исправлена ссылка -->
+            <img src="{{ item.img.url }}" alt="{{ item.title }}">
+            <h2 class="news-title">{{ item.title }}</h2>
+            <p class="news-text">{{ item.text|truncatechars:200 }}</p> <!-- Исправлен <h4> на <p> -->
+        </a>
+    </section>
+    {% endfor %}
+</div>
+
+{% endblock %}
