@@ -1,4 +1,4 @@
-{{% extends 'base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block title %}Галерея — ЛФМШ «Квант»{% endblock %}
@@ -9,26 +9,25 @@
 
 {% block content %}
 <div class="gallery-header">
-    <h1>📸 Галерея</h1>
+    <h1>Галерея</h1>
     <p class="subtitle">Воспоминания о наших сменах</p>
+</div>
 
-    <!-- БЛОК СОРТИРОВКИ (только 4 варианта) -->
-    <div class="sort-section">
-        <span class="sort-label">Сортировать:</span>
-        <div class="sort-options">
-            <a href="?sort=newest" class="sort-link {% if current_sort == 'newest' or not current_sort %}active{% endif %}">
-                🆕 Сначала новые
-            </a>
-            <a href="?sort=oldest" class="sort-link {% if current_sort == 'oldest' %}active{% endif %}">
-                📅 Сначала старые
-            </a>
-            <a href="?sort=title" class="sort-link {% if current_sort == 'title' %}active{% endif %}">
-                🔤 По названию (А-Я)
-            </a>
-            <a href="?sort=-title" class="sort-link {% if current_sort == '-title' %}active{% endif %}">
-                🔤 По названию (Я-А)
-            </a>
-        </div>
+<!-- СОРТИРОВКА (в стиле карточек на фото) -->
+<div class="sort-section">
+    <div class="sort-options">
+        <a href="?sort=newest" class="sort-link {% if current_sort == 'newest' or not current_sort %}active{% endif %}">
+            Новые
+        </a>
+        <a href="?sort=oldest" class="sort-link {% if current_sort == 'oldest' %}active{% endif %}">
+            Старые
+        </a>
+        <a href="?sort=title" class="sort-link {% if current_sort == 'title' %}active{% endif %}">
+            А-Я
+        </a>
+        <a href="?sort=-title" class="sort-link {% if current_sort == '-title' %}active{% endif %}">
+            Я-А
+        </a>
     </div>
 </div>
 
@@ -54,25 +53,8 @@
     </div>
     {% empty %}
     <div class="empty-message">
-        <p>📸 Пока нет альбомов. Загрузите первые фотографии в админке!</p>
+        <p>Пока нет альбомов. Загрузите первые фотографии в админке!</p>
     </div>
     {% endfor %}
 </div>
-
-<!-- ПАГИНАЦИЯ -->
-{% if page_obj.has_other_pages %}
-<div class="pagination">
-    {% if page_obj.has_previous %}
-        <a href="?page={{ page_obj.previous_page_number }}&sort={{ current_sort }}">← Назад</a>
-    {% endif %}
-
-    <span class="current-page">
-        {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
-    </span>
-
-    {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}&sort={{ current_sort }}">Вперёд →</a>
-    {% endif %}
-</div>
-{% endif %}
 {% endblock %}
