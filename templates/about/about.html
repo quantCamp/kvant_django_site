@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}О школе | Летняя школа «Квант»{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">О школе</h1>
+        <div class="hero-logo-container">
+            <img src="{% static 'img/kvant-logo.png' %}" class="hero-logo" alt="Логотип школы Квант">
+        </div>
+        <p class="hero-subtitle">
+            Летняя физико-математическая школа «Квант» Казанского университета – одна из старейших профильных школ в России. Школа «Квант» была создана 1972 году и приняла первых 50 школьников – участников заочной физической школы. В 1973 году в её работе приняли участие призёры олимпиад по физике и математике.
+
+Сейчас в этой школе ведётся интенсивное, углублённое обучение по направлениям: физика, математика и информатика. В программу включены разнообразные факультативы, научно-популярные лекции. Занятия по математике проводятся при поддержке Научно-образовательного математического центра Приволжского федерального округа.
+
+Учебная программа построена так, что многие темы дополняют школьную программу и могут заинтересовать школьников, привить любовь к науке и показать, зачем всё это нужно.
+
+С самого её основания в Школе «Квант» работали энтузиасты – преподаватели и студенты университета, любящие детей, любящие свою науку, очень интересные, разносторонне развитые люди. Среди преподавателей много выпускников «Кванта», которые продолжают дело своих педагогов, сохраняют и придумывают новые добрые традиции школы «Квант», благодаря этим энтузиастам, живёт и дальше будет жить эта школа, любимая ее учениками, где все работают и учатся не по принуждению, а потому, что им это нравится.
+
+Летняя профильная школа «Квант» в 2024 году стала дипломантом Всероссийского конкурса программ и методических кейсов «Лучшая программа организации отдыха и оздоровления» в номинации «Программы научных смен». <a href="https://malun.kpfu.ru/sites/default/files/kvant/Kvant%20-%20gramota24.pdf" target="_blank">(№49-К от 19.12.2024 ФГБУ «ФЦОМОФВ Министерства просвещения РФ)</a>.
+        </p>
+    </div>
+</section>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">Хочу в квант!</h1>
+        <p class="hero-subtitle"></p>
+        <div class="form-container">
+            <form method="post" class="event-form" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="form-fields">
+                    {% for field in form %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}" class="form-label">
+                            {{ field.label }}
+                        </label>
+                        {{ field }}
+                        {% if field.errors %}
+                        <div class="form-errors">
+                            {{ field.errors }}
+                        </div>
+                        {% endif %}
+                        {% if field.help_text %}
+                        <small class="form-help">{{ field.help_text }}</small>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span class="btn-icon">✨</span>
+                    Зарегистрироваться
+                </button>
+            </form>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+    
+{% endblock %}
