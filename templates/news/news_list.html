@@ -6,9 +6,14 @@
 {% endblock %}
 {% block content %}
 {% for item in news_listik %}
-    <h2>{{ item.title }}</h2>
-    <p>{{ item.text|truncatechars:200 }}</p>
 
+<section>
+    <a href="/news/<int:pk>/)">
+        <img src="{{ item.img.url }}">
+        <h2>{{ item.title }}</h2>
+        <h4>{{ item.text|truncatechars:200 }}</h4>
+    </a>
+</section>
 
 {% endfor %}
 

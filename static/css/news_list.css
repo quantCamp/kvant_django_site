@@ -1,313 +1,105 @@
- * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-        }
-
-        body {
-            background: #f0f2f5;
-            color: #1e293b;
-            padding: 24px 16px 40px;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Шапка */
-        .header {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            background: white;
-            padding: 20px 32px;
-            border-radius: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            margin-bottom: 32px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: #0f172a;
-        }
-
-        .logo i {
-            font-size: 2rem;
-            color: #2563eb;
-        }
-
-        .logo h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #475569;
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-
-        .nav-links a:hover {
-            background: #f1f5f9;
-            color: #2563eb;
-        }
-
-        .nav-links a.active {
-            background: #2563eb;
-            color: white;
-        }
-
-        .nav-links a.btn-add {
-            background: #2563eb;
-            color: white;
-        }
-
-        .nav-links a.btn-add:hover {
-            background: #1d4ed8;
-        }
-
-        /* Фильтры */
-        .filters {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 28px;
-            background: white;
-            padding: 16px 24px;
-            border-radius: 12px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-            align-items: center;
-        }
-
-        .filters .filter-label {
-            font-weight: 600;
-            color: #475569;
-            margin-right: 8px;
-        }
-
-        .filters a {
-            text-decoration: none;
-            color: #475569;
-            padding: 4px 14px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-        }
-
-        .filters a:hover {
-            background: #e2e8f0;
-        }
-
-        .filters a.active {
-            background: #2563eb;
-            color: white;
-        }
-
-        .filters input {
-            margin-left: auto;
-            padding: 8px 16px;
-            border: 1px solid #e2e8f0;
-            border-radius: 20px;
-            outline: none;
-            font-size: 0.9rem;
-            width: 220px;
-            transition: border 0.2s;
-        }
-
-        .filters input:focus {
-            border-color: #2563eb;
-        }
-
-        /* Сетка */
         .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
 
+        /* 2. Карточка новости — наследуем от .card, но адаптируем */
         .news-card {
-            background: white;
-            border-radius: 16px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid #edf2f7;
+            transition: all var(--transition-normal);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            top: 0;
         }
 
         .news-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+            top: -6px;
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(59, 130, 246, 0.3);
         }
 
-        .card-image {
-            height: 200px;
-            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+        /* 3. Ссылка внутри карточки — занимает всю площадь */
+        .news-card-link {
+            text-decoration: none;
+            color: inherit;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: #3b82f6;
+            flex-direction: column;
+            height: 100%;
         }
 
-        .card-body {
-            padding: 20px;
+        /* 4. Изображение — ОДИНАКОВЫЙ РАЗМЕР для всех! */
+        .news-card-link img {
+            width: 100%;
+            height: 220px; /* Фиксированная высота для одинакового размера */
+            object-fit: cover; /* Сохраняет пропорции, обрезая лишнее */
+            display: block;
+            background-color: #e9edf2; /* Цвет-заполнитель */
+            transition: transform var(--transition-normal);
         }
 
-        .card-tag {
+        /* Лёгкое увеличение картинки при наведении */
+        .news-card:hover .news-card-link img {
+            transform: scale(1.03);
+        }
+
+        /* 5. Заголовок новости */
+        .news-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            padding: 1rem 1.25rem 0.25rem 1.25rem;
+            line-height: 1.4;
+            transition: color var(--transition-fast);
+            margin: 0;
+        }
+
+        .news-card-link:hover .news-title {
+            color: var(--primary-color);
+        }
+
+        /* 6. Текст новости (обрезанный до 200 символов) */
+        .news-text {
+            font-size: 0.925rem;
+            color: var(--text-muted);
+            padding: 0.25rem 1.25rem 1.25rem 1.25rem;
+            line-height: 1.6;
+            flex-grow: 1;
+            margin: 0;
+        }
+
+        /* 7. Бейдж/метка "Новость" (опционально) */
+        .news-badge {
             display: inline-block;
+            background-color: var(--primary-color);
+            color: #ffffff;
             font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
-            color: #2563eb;
-            background: #dbeafe;
-            padding: 3px 12px;
-            border-radius: 30px;
-            margin-bottom: 12px;
+            letter-spacing: 0.05em;
+            padding: 0.2rem 0.75rem;
+            border-radius: 20px;
+            margin: 0 1.25rem 0.5rem 1.25rem;
+            align-self: flex-start;
         }
 
-        .card-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            line-height: 1.4;
+        /* 8. Стили для секции с новостями (контейнер) */
+        .news-section {
+            margin: 2rem 0;
         }
 
-        .card-title a {
-            text-decoration: none;
-            color: #0f172a;
-            transition: color 0.2s;
+        .news-section .section-title {
+            text-align: left;
+            margin-bottom: 1.5rem;
         }
 
-        .card-title a:hover {
-            color: #2563eb;
-        }
-
-        .card-excerpt {
-            color: #475569;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 16px;
-        }
-
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            color: #64748b;
-            border-top: 1px solid #edf2f7;
-            padding-top: 14px;
-        }
-
-        .card-meta .author i {
-            margin-right: 6px;
-        }
-
-        .card-meta .date i {
-            margin-right: 6px;
-        }
-
-        /* Пагинация */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 40px;
-        }
-
-        .pagination a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 40px;
-            height: 40px;
-            padding: 0 14px;
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            color: #1e293b;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-
-        .pagination a:hover {
-            background: #f1f5f9;
-            border-color: #94a3b8;
-        }
-
-        .pagination a.active {
-            background: #2563eb;
-            border-color: #2563eb;
-            color: white;
-        }
-
-        .pagination a.disabled {
-            opacity: 0.4;
-            pointer-events: none;
-        }
-
-        .footer {
-            margin-top: 48px;
-            padding-top: 24px;
-            border-top: 1px solid #e2e8f0;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        .footer a {
-            color: #475569;
-            text-decoration: none;
-            margin-left: 20px;
-        }
-
-        .footer a:hover {
-            color: #2563eb;
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                gap: 16px;
-                align-items: stretch;
-            }
-
-            .nav-links {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .filters {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .filters input {
-                margin-left: 0;
-                width: 100%;
-            }
-
-            .news-grid {
-                grid-template-columns: 1fr;
-            }
+        .news-section .section-title::after {
+            margin: 0.5rem 0 0 0;
         }
