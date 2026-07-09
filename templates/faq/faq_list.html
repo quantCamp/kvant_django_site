@@ -1,117 +1,74 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}FAQ — ЛФМШ «Квант»{% endblock %}
+{% block title %}FAQ | Летняя школа «Квант»{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/faq.css' %}">
+{% endblock %}
 
 {% block content %}
-<!-- Стили для аккордеона FAQ -->
-<style>
-    .faq-container {
-        max-width: 800px;
-        margin: 0 auto;
-    }
+<div class="faq-header">
+    <h1>Часто задаваемые вопросы</h1>
+    <p class="faq-subtitle">Здесь собраны ответы на самые популярные вопросы участников, родителей и преподавателей о ЛФМШ «Квант».</p>
+</div>
 
-    .faq-item {
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        margin-bottom: 12px;
-        background-color: #ffffff;
-        cursor: pointer;
-        transition: box-shadow 0.2s, border-color 0.2s;
-        overflow: hidden; /* Важно: скрывает контент при анимации */
-    }
-
-    .faq-item:hover {
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        border-color: #b8b8b8;
-    }
-
-    /* Заголовок вопроса */
-    .faq-header {
-        padding: 18px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-weight: 600;
-        color: #333;
-    }
-
-    /* Иконка-стрелка */
-    .toggle-icon {
-        font-size: 14px;
-        color: #666;
-        min-width: 24px;
-        text-align: center;
-    }
-
-    /* Состояние "закрыто" (стрелка вправо) */
-    .faq-item .toggle-icon::after {
-        content: "▶";
-    }
-
-    /* Состояние "открыто" (класс .open добавлен JS, стрелка вниз) */
-    .faq-item.open .toggle-icon::after {
-        content: "▼";
-        color: #007bff; /* Цвет стрелки при открытии */
-    }
-
-    /* Блок с ответом */
-    .faq-answer {
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0; /* Плавное появление текста */
-        padding: 0 20px;
-        color: #555;
-        line-height: 1.6;
-        transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                    opacity 0.3s ease;
-        padding-top: 0;
-        padding-bottom: 0;
-    }
-
-    /* Когда элемент открыт - раскрываем ответ */
-    .faq-item.open .faq-answer {
-        max-height: 1000px; /* Увеличено для длинных динамических ответов */
-        opacity: 1;
-        padding-top: 10px;
-        padding-bottom: 20px;
-    }
-</style>
-
-<div class="faq-container">
-    <h1>Ответы на вопросы</h1>
-    <p>Если не нашли ответ — напишите нам.</p>
-
+<div class="faq-categories">
     {% for category in categories %}
-        <h2 style="margin-top: 40px; color: #333; border-bottom: 2px solid #007bff; padding-bottom: 8px;">
-            {{ category.name }}
+    {% if category.items.all %}
+    <div class="faq-category-block">
+        <h2 class="faq-category-title">
+            <span>📁</span> {{ category.name }}
         </h2>
-
-        {% for item in category.items.all %}
-            <!-- Карточка вопроса -->
-            <div class="faq-item">
-                <div class="faq-header">
-                    <span><strong>{{ item.question }}</strong></span>
-                    <span class="toggle-icon"></span>
-                </div>
-
-                <!-- Ответ (скрыт по умолчанию) -->
-                <div class="faq-answer">
-                    {{ item.answer|linebreaksbr }}
+        <div class="accordion-list">
+            {% for item in category.items.all %}
+            <div class="accordion-item">
+                <button class="accordion-header">
+                    <span class="accordion-question">{{ item.question }}</span>
+                    <span class="accordion-icon">▼</span>
+                </button>
+                <div class="accordion-content">
+                    <div class="accordion-answer">
+                        {{ item.answer }}
+                    </div>
                 </div>
             </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% empty %}
+    <p style="text-align: center; color: var(--text-muted);">Раздел FAQ пуст. Пожалуйста, добавьте категории и вопросы через панель администратора.</p>
     {% endfor %}
 </div>
 
-<!-- Скрипт для раскрытия по клику -->
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const faqItems = document.querySelectorAll('.faq-item');
+    document.addEventListener('DOMContentLoaded', function () {
+        const headers = document.querySelectorAll('.accordion-header');
 
-        faqItems.forEach(item => {
-            item.addEventListener('click', function() {
-                this.classList.toggle('open');
+        headers.forEach(header => {
+            header.addEventListener('click', function () {
+                const item = this.parentElement;
+                const content = item.querySelector('.accordion-content');
+                const isActive = item.classList.contains('active');
+
+                // Закрываем другие вопросы в этой же категории для аккуратности
+                const list = this.closest('.accordion-list');
+                list.querySelectorAll('.accordion-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.accordion-content').style.maxHeight = null;
+                    }
+                });
+
+                // Переключаем активное состояние текущего вопроса
+                if (!isActive) {
+                    item.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                } else {
+                    item.classList.remove('active');
+                    content.style.maxHeight = null;
+                }
             });
         });
     });

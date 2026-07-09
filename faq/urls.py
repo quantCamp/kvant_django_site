@@ -1,7 +1,8 @@
 from django.urls import path
+from . import views
 
-from faq import views
+app_name = 'faq'
 
 urlpatterns = [
-    path('', views.question),
+    path('', views.faq_view, name='faq_view'),
 ]

@@ -25,10 +25,10 @@
                 <ul class="nav-list">
                     <li><a href="{% url 'main:index' %}" class="nav-link {% if request.resolver_match.view_name == 'main:index' or request.path == '/' %}active{% endif %}">Главная</a></li>
                     <li><a href="{% url 'schedule:schedule_view' %}" class="nav-link {% if request.resolver_match.app_name == 'schedule' or '/schedule/' in request.path %}active{% endif %}">Расписание</a></li>
-                    <li><a href="#" class="nav-link disabled">Профиль</a></li>
                     <li><a href="#" class="nav-link disabled">Новости</a></li>
                     <li><a href="#" class="nav-link disabled">О школе</a></li>
-                    <li><a href="/faq" class="nav-link">часто задаваемые вопросы</a></li>
+                    <li><a href="{% url 'faq:faq_view' %}" class="nav-link {% if request.resolver_match.app_name == 'faq' or '/faq/' in request.path %}active{% endif %}">FAQ</a></li>
+
                 </ul>
             </nav>
         </div>

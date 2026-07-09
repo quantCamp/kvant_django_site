@@ -1,17 +1,6 @@
 from django.shortcuts import render
+from .models import FAQCategory
 
-from faq.models import FAQCategory
-
-# Create your views here.
-
-def question(request):
-    categories = FAQCategory.objects.all()
-
-    return render (request, 'faq/faq_list.html', context= {"categories": categories})
-
-
-
-
-
-
-
+def faq_view(request):
+    categories = FAQCategory.objects.prefetch_related('items').all().order_by('order', 'name')
+    return render(request, 'faq/faq_list.html', {'categories': categories})
