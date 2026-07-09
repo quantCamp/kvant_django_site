@@ -21,9 +21,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('main.urls')),           # Главная страница
-    path('gallery/', include('gallery.urls')), # Галерея
+    path('', include('main.urls')),
+    path('gallery/', include('gallery.urls')),
 ]
 
+# ВАЖНО: Добавить обработку медиа-файлов
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
