@@ -28,6 +28,7 @@
                     <li><a href="#" class="nav-link disabled">Новости</a></li>
                     <li><a href="{% url 'gallery:album_list' %}" class="nav-link {% if request.resolver_match.app_name == 'gallery' or '/gallery/' in request.path %}active{% endif %}">Галерея</a></li>
                     <li><a href="#" class="nav-link disabled">О школе</a></li>
+                    <li><a href="{% url 'courses:course_list' %}" class="nav-link">Курсы</a></li>
                     <li><a href="{% url 'faq:faq_view' %}" class="nav-link {% if request.resolver_match.app_name == 'faq' or '/faq/' in request.path %}active{% endif %}">FAQ</a></li>
                 </ul>
             </nav>

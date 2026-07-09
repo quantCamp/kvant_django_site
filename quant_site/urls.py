@@ -26,8 +26,11 @@ urlpatterns = [
     path('faq/', include('faq.urls')),     # Главная страница
     path('gallery/', include('gallery.urls')),
     path('schedule/', include('schedule.urls')),
-    path('library/', include('library.urls'))
+    path('library/', include('library.urls')),
+    path('courses/', include('courses.urls', namespace='courses')),
+    path('teachers/', include("teachers.urls"))  # Маршрутизация на приложение main # Маршрутизация на приложение main
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
