@@ -14,5 +14,5 @@ class Material(models.Model):
                                      choices=[('link', 'Ссылка'), ('file', 'Файл')],
                                      default='link')
     link = models.TextField(null=True, blank=True)
-    file_name = models.CharField(max_length=150, null=True, blank=True)
+    file = models.FileField(max_length=150, null=True, blank=True)
     category = models.ForeignKey(to=Category, on_delete=models.CASCADE, related_name="materials")

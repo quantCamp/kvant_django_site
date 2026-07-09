@@ -9,4 +9,6 @@ def main_page(request):
 
 def category_page(request, category):
     materials = models.Material.objects.filter(category=category)
-    return render(request, "./category.html", context={"materials": materials})
+    category_object = models.Category.objects.get(id=category)
+    category_name = category_object.name
+    return render(request, "./category.html", context={"materials": materials, "name": category_name})
