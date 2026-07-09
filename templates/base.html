@@ -26,11 +26,15 @@
                     <li><a href="{% url 'main:index' %}" class="nav-link {% if request.resolver_match.view_name == 'main:index' or request.path == '/' %}active{% endif %}">Главная</a></li>
                     <li><a href="{% url 'schedule:schedule_view' %}" class="nav-link {% if request.resolver_match.app_name == 'schedule' or '/schedule/' in request.path %}active{% endif %}">Расписание</a></li>
                     <li><a href="{% url 'faq:faq_view' %}" class="nav-link {% if request.resolver_match.app_name == 'faq' or '/faq/' in request.path %}active{% endif %}">FAQ</a></li>
+                    <li><a href="#" class="nav-link disabled">Новости</a></li>
+                    <li><a href="{% url 'about:about' %}" class="nav-link">О школе</a></li>
                     <li><a href="{% url 'gallery:album_list' %}" class="nav-link {% if request.resolver_match.app_name == 'gallery' or '/gallery/' in request.path %}active{% endif %}">Галерея</a></li>
                     <li><a href="{% url 'library:main_page' %}" class="nav-link {% if request.resolver_match.app_name == 'library' or '/library/' in request.path %}active{% endif %}">Библиотека</a></li>
                     <li><a href="#" class="nav-link disabled">Профиль</a></li>
                     <li><a href="#" class="nav-link disabled">Новости</a></li>
                     <li><a href="#" class="nav-link disabled">О школе</a></li>
+                    <li><a href="{% url 'courses:course_list' %}" class="nav-link">Курсы</a></li>
+                    <li><a href="{% url 'faq:faq_view' %}" class="nav-link {% if request.resolver_match.app_name == 'faq' or '/faq/' in request.path %}active{% endif %}">FAQ</a></li>
                 </ul>
             </nav>
         </div>

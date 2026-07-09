@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Новости{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/news_add.css' %}">
+{% endblock %}
+{% block content %}
+<section class="news-add-section">
+  <div class="form-container">
+    <h2 class="form-title">Добавить новость</h2>
+    <form method="post" enctype="multipart/form-data" class="news-form">
+      {% csrf_token %}
+
+      <!-- Поле заголовка -->
+      <div class="form-group">
+        <label for="id_title">Заголовок</label>
+        <input type="text" name="title" id="id_title"
+               class="form-control" placeholder="Введите заголовок новости" required>
+      </div>
+
+      <!-- Поле текста -->
+      <div class="form-group">
+        <label for="id_text">Текст новости</label>
+        <textarea name="text" id="id_text" rows="8"
+                  class="form-control" placeholder="Напишите подробности..." required></textarea>
+      </div>
+
+      <!-- Поле загрузки изображения -->
+      <div class="form-group">
+        <label for="id_img">Изображение</label>
+        <div class="file-upload-wrapper">
+          <input type="file" name="img" id="id_img" accept="image/*" class="file-input" required>
+          <label for="id_img" class="file-label">
+            <span class="file-icon">📎</span>
+            <span class="file-text">Выберите файл</span>
+          </label>
+          <span class="file-name" id="file-name">Файл не выбран</span>
+        </div>
+        <small class="form-hint">Поддерживаются JPEG, PNG, GIF. Максимальный размер 5 МБ.</small>
+      </div>
+
+      <!-- Кнопка отправки -->
+      <button type="submit" class="submit-btn">Опубликовать</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

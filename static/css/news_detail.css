@@ -1,0 +1,205 @@
+/* Основные цвета */
+:root {
+  --news-primary-blue: #1a73e8;
+  --news-light-blue: #e8f0fe;
+  --news-medium-blue: #4285f4;
+  --news-dark-blue: #1557b0;
+  --news-white: #ffffff;
+  --news-light-gray: #f8f9fa;
+  --news-text-gray: #3c4043;
+}
+
+/* Общий стиль для контейнера новостей */
+.news-detail-container {
+  font-family: Arial, sans-serif;
+  color: var(--news-text-gray);
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+/* Блок новости */
+.news-detail-block {
+  background-color: var(--news-white);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(26, 115, 232, 0.15);
+  margin-bottom: 30px;
+  border-left: 4px solid var(--news-primary-blue);
+}
+
+.news-detail-block img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 2px solid var(--news-light-blue);
+}
+
+.news-detail-title {
+  color: var(--news-primary-blue);
+  font-size: 28px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--news-light-blue);
+  padding-bottom: 12px;
+}
+
+.news-detail-text {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--news-text-gray);
+}
+
+/* Комментарии */
+.news-comment-item {
+  list-style: none;
+  background-color: var(--news-white);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  border-left: 3px solid var(--news-medium-blue);
+  transition: all 0.2s ease;
+}
+
+.news-comment-item:hover {
+  box-shadow: 0 2px 8px rgba(26, 115, 232, 0.2);
+  transform: translateX(4px);
+}
+
+.news-comment-text {
+  font-size: 18px;
+  color: var(--news-dark-blue);
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.news-comment-date {
+  font-size: 14px;
+  color: #5f6368;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Секция с формой */
+.news-form-section {
+  background-color: var(--news-white);
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 30px;
+  box-shadow: 0 2px 8px rgba(26, 115, 232, 0.15);
+  border: 1px solid var(--news-light-blue);
+}
+
+.news-form-section h2 {
+  color: var(--news-primary-blue);
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Стили формы */
+.news-comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.news-comment-form p {
+  margin: 0;
+}
+
+.news-comment-form label {
+  display: block;
+  font-weight: 600;
+  color: var(--news-dark-blue);
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.news-comment-form input,
+.news-comment-form textarea,
+.news-comment-form select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 2px solid #dce3ed;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.news-comment-form input:focus,
+.news-comment-form textarea:focus,
+.news-comment-form select:focus {
+  outline: none;
+  border-color: var(--news-primary-blue);
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+}
+
+.news-comment-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Кнопка отправки */
+.news-submit-btn {
+  background-color: var(--news-primary-blue);
+  color: var(--news-white);
+  border: none;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+  box-shadow: 0 2px 4px rgba(26, 115, 232, 0.3);
+}
+
+.news-submit-btn:hover {
+  background-color: var(--news-dark-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 115, 232, 0.4);
+}
+
+.news-submit-btn:active {
+  transform: translateY(0px);
+  box-shadow: 0 2px 4px rgba(26, 115, 232, 0.2);
+}
+
+/* Обработка ошибок формы */
+.news-comment-form .errorlist {
+  color: #d32f2f;
+  font-size: 13px;
+  margin: 4px 0 0 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 600px) {
+  .news-detail-container {
+    padding: 10px;
+  }
+
+  .news-detail-block {
+    padding: 16px;
+  }
+
+  .news-detail-title {
+    font-size: 22px;
+  }
+
+  .news-form-section {
+    padding: 16px;
+  }
+
+  .news-submit-btn {
+    width: 100%;
+    align-self: stretch;
+  }
+}
