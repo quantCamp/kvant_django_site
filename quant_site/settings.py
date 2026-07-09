@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     
     # Пользовательские приложения
     'main.apps.MainConfig',
-    'schedule.apps.ScheduleConfig'
+    'schedule.apps.ScheduleConfig',
     "library.apps.LibraryConfig"
 ]
 

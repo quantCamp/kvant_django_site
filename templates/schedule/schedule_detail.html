@@ -11,8 +11,8 @@
 <div class="schedule-detail-container">
     <h1>{{ scheduleItem.event_name }}</h1>
     <div class="schedule-full-description">
-        <h3>Детальное описание мероприятия:</h3>
         <p>{{ scheduleItem.detailed_description }}</p>
     </div>
+    <a href="{% url 'schedule:schedule_view' %}" class="btn-back">&larr; Назад к расписанию</a>
 </div>
 {% endblock %}
