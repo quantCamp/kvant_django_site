@@ -20,5 +20,10 @@ class TeacherFeedBack(models.Model):
         on_delete=models.CASCADE,
         related_name="feedbacks"
     )
-    text = models.TextField(null=False, blank=False)
+    question = models.TextField(null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.question
+    
+
