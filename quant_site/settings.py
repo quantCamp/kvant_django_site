@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     
     # Пользовательские приложения
     'main.apps.MainConfig',
+    'faq.apps.FaqConfig'
 ]
 
 MIDDLEWARE = [
