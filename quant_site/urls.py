@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from django.conf.urls.static import static
+from quant_site import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('main.urls')),  # Маршрутизация на приложение main
+    path('', include('main.urls')),
     path('courses/', include('courses.urls', namespace='courses')),
-]
+                  path('teachers/', include("teachers.urls"))  # Маршрутизация на приложение main # Маршрутизация на приложение main
+] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
