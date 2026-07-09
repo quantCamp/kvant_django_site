@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Новости - Список</title>
-    <link rel="stylesheet" href="{% static 'css/news_list.css' %}">
-</head>
-<body>
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Новости{% endblock %}
+
+{% block extra_head %}<link rel="stylesheet" href="{% static 'css/news_list.css' %}">{% endblock %}
+
+{% block content %}
     <div class="container">
         <!-- Шапка -->
         <header class="header">
@@ -16,141 +16,21 @@
             </a>
             <nav class="nav-links">
                 <a href="news_list.html" class="active"><i class="fas fa-list"></i> Список</a>
-                <a href="news_detail.html"><i class="fas fa-eye"></i> Детали</a>
-                <a href="news_add.html" class="btn-add"><i class="fas fa-plus"></i> Добавить</a>
+                <a href="detail"><i class="fas fa-eye"></i> Детали</a>
+                <a href="add" class="btn-add"><i class="fas fa-plus"></i> Добавить</a>
             </nav>
         </header>
 
-        <!-- Фильтры -->
-        <div class="filters">
-            <span class="filter-label"><i class="fas fa-filter"></i> Категории:</span>
-            <a href="#" class="active">Все</a>
-            <a href="#">Политика</a>
-            <a href="#">Экономика</a>
-            <a href="#">Технологии</a>
-            <a href="#">Спорт</a>
-            <a href="#">Культура</a>
-            <input type="text" placeholder="🔍 Поиск новостей...">
-        </div>
+
 
         <!-- Список новостей -->
         <div class="news-grid">
             <!-- Новость 1 -->
-            <article class="news-card">
-                <div class="card-image">
-                    <i class="fas fa-landmark"></i>
-                </div>
-                <div class="card-body">
-                    <span class="card-tag">Политика</span>
-                    <h2 class="card-title"><a href="news_detail.html">Переговоры на высшем уровне завершились подписанием договора</a></h2>
-                    <p class="card-excerpt">Сегодня в столице состоялась встреча глав государств. Подписаны важные соглашения о сотрудничестве в экономической сфере...</p>
-                    <div class="card-meta">
-                        <span class="author"><i class="fas fa-user-circle"></i> Анна Коваль</span>
-                        <span class="date"><i class="far fa-calendar-alt"></i> 07.07.2026</span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Новость 2 -->
-            <article class="news-card">
-                <div class="card-image">
-                    <i class="fas fa-microchip"></i>
-                </div>
-                <div class="card-body">
-                    <span class="card-tag">Технологии</span>
-                    <h2 class="card-title"><a href="news_detail.html">Российский процессор побил мировой рекорд производительности</a></h2>
-                    <p class="card-excerpt">Новый чип показал результаты на 40% выше предыдущего поколения. Разработка уже заинтересовала крупных зарубежных партнеров...</p>
-                    <div class="card-meta">
-                        <span class="author"><i class="fas fa-user-circle"></i> Дмитрий Егоров</span>
-                        <span class="date"><i class="far fa-calendar-alt"></i> 07.07.2026</span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Новость 3 -->
-            <article class="news-card">
-                <div class="card-image">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <div class="card-body">
-                    <span class="card-tag">Экономика</span>
-                    <h2 class="card-title"><a href="news_detail.html">Рынок акций завершил неделю рекордным ростом</a></h2>
-                    <p class="card-excerpt">Индекс Мосбиржи обновил исторический максимум. Эксперты связывают это с укреплением рубля и позитивными новостями из нефтяного сектора...</p>
-                    <div class="card-meta">
-                        <span class="author"><i class="fas fa-user-circle"></i> Мария Соколова</span>
-                        <span class="date"><i class="far fa-calendar-alt"></i> 06.07.2026</span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Новость 4 -->
-            <article class="news-card">
-                <div class="card-image">
-                    <i class="fas fa-futbol"></i>
-                </div>
-                <div class="card-body">
-                    <span class="card-tag">Спорт</span>
-                    <h2 class="card-title"><a href="news_detail.html">Сборная России вышла в полуфинал Кубка мира</a></h2>
-                    <p class="card-excerpt">В напряженном матче российские футболисты обыграли действующего чемпиона в серии пенальти. Следующий соперник будет объявлен завтра...</p>
-                    <div class="card-meta">
-                        <span class="author"><i class="fas fa-user-circle"></i> Алексей Воронов</span>
-                        <span class="date"><i class="far fa-calendar-alt"></i> 06.07.2026</span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Новость 5 -->
-            <article class="news-card">
-                <div class="card-image">
-                    <i class="fas fa-flask"></i>
-                </div>
-                <div class="card-body">
-                    <span class="card-tag">Наука</span>
-                    <h2 class="card-title"><a href="news_detail.html">Новый метод очистки воды представили учёные</a></h2>
-                    <p class="card-excerpt">Разработка позволяет удалять до 99% микропластика. Технология уже проходит испытания в нескольких регионах страны...</p>
-                    <div class="card-meta">
-                        <span class="author"><i class="fas fa-user-circle"></i> Елена Морозова</span>
-                        <span class="date"><i class="far fa-calendar-alt"></i> 05.07.2026</span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Новость 6 -->
-            <article class="news-card">
-                <div class="card-image">
-                    <i class="fas fa-theater-masks"></i>
-                </div>
-                <div class="card-body">
-                    <span class="card-tag">Культура</span>
-                    <h2 class="card-title"><a href="news_detail.html">Премьера балета «Лебединое озеро» прошла с аншлагом</a></h2>
-                    <p class="card-excerpt">Новая постановка в Большом театре вызвала восторг у зрителей. Главные партии исполнили звезды мирового балета...</p>
-                    <div class="card-meta">
-                        <span class="author"><i class="fas fa-user-circle"></i> Ирина Лебедева</span>
-                        <span class="date"><i class="far fa-calendar-alt"></i> 05.07.2026</span>
-                    </div>
-                </div>
-            </article>
-        </div>
-
-        <!-- Пагинация -->
-        <div class="pagination">
-            <a href="#" class="disabled"><i class="fas fa-chevron-left"></i></a>
-            <a href="#" class="active">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#"><i class="fas fa-chevron-right"></i></a>
-        </div>
-
-        <!-- Футер -->
-        <footer class="footer">
-            <span>&copy; 2026 Новости. Все права защищены.</span>
-            <div>
-                <a href="#"><i class="fas fa-info-circle"></i> О нас</a>
-                <a href="#"><i class="fas fa-envelope"></i> Контакты</a>
-                <a href="#"><i class="fas fa-shield-alt"></i> Политика</a>
-            </div>
-        </footer>
-    </div>
-</body>
-</html>
+            {% for news in news %}
+                <li class="News-card">
+                    <a href="detail/{{ news.id }}">
+                        <span class="news-title">{{ news.title }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+{% endblock %}

@@ -2,3 +2,5 @@ Django>=5.1,<5.2
 tzdata
 asgiref
 sqlparse
+
+#article = NewsArticle.objects.create(title="Открытие лагерной смены!", text="Сегодня в лагере 'КВАНТ' состоялось торжественное открытие 55-й смены. Ребята познакомились с вожатыми, послушали 67 и поучаствовали в игровой программе.", img="news/static/img/default.jpg")
