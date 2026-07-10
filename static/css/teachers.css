@@ -1,0 +1,320 @@
+/* teachers.css - Стили для раздела Преподаватели ЛФМШ «Квант» */
+
+.teachers-main {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.teachers-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.teachers-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.025em;
+    margin-top: 0.5rem;
+}
+
+.teachers-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-color);
+    margin: 0.6rem auto 0;
+    border-radius: 2px;
+}
+
+.teachers-subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+/* Сетка карточек */
+.teachers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.teachers-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.teachers-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+/* Контейнер для фото с центрированием */
+.teachers-photo-container {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1.25rem;
+    border: 4px solid #f1f5f9;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background-color: #f8fafc;
+    transition: transform var(--transition-fast) ease-in-out;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.teachers-photo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.teachers-card:hover .teachers-photo-container {
+    transform: scale(1.05);
+    border-color: #dbeafe;
+}
+
+/* Плейсхолдер для фото с центрированием */
+.teachers-photo-placeholder {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background-color: #f1f5f9;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    margin: 0 auto 1.25rem;
+    border: 4px solid #f1f5f9;
+    flex-shrink: 0;
+}
+
+.teachers-name-link {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 700;
+    font-size: 1.2rem;
+    display: block;
+    transition: color var(--transition-fast);
+    text-align: center;
+}
+
+.teachers-name-link:hover {
+    color: var(--primary-color);
+}
+
+.teachers-divider {
+    height: 2px;
+    background-color: #f1f5f9;
+    width: 50px;
+    margin: 1rem auto;
+}
+
+.teachers-subject {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* Детальная страница преподавателя */
+.teacher-detail-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    padding: 3rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.teacher-detail-header {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+/* Аватарка в детальной странице с центрированием */
+.teacher-avatar-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #f1f5f9;
+    box-shadow: var(--shadow-sm);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.teacher-avatar-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.teacher-main-info {
+    flex-grow: 1;
+}
+
+.teacher-fullname {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.025em;
+    margin-bottom: 0.5rem;
+}
+
+.teacher-badge {
+    background-color: #eff6ff;
+    color: var(--primary-color);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    border: 1px solid #dbeafe;
+    display: inline-block;
+    letter-spacing: 0.05em;
+}
+
+/* Поля информации */
+.info-field {
+    margin-bottom: 1.5rem;
+}
+
+.info-field .label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.35rem;
+}
+
+.info-field .value {
+    font-size: 1.05rem;
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+.info-field a {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: color var(--transition-fast);
+}
+
+.info-field a:hover {
+    color: var(--primary-hover);
+}
+
+/* Раздел вопросов */
+.question-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px dashed var(--border-color);
+}
+
+.question-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+}
+
+.question-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.question-form textarea,
+.question-form input[type="text"] {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    transition: all var(--transition-fast);
+    background-color: #f8fafc;
+}
+
+.question-form textarea:focus,
+.question-form input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-submit-btn {
+    align-self: flex-start;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.form-submit-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Адаптив для мобильных устройств */
+@media (max-width: 768px) {
+    .teacher-detail-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .teacher-avatar-circle {
+        margin: 0 auto;
+    }
+    
+    .teachers-card {
+        padding: 2rem 1.5rem;
+    }
+}
