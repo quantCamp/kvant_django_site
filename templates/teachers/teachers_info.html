@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ teacher.first_name }} {{ teacher.patronymic }} — Летняя школа «Квант»{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/teachers.css' %}">
+{% endblock %}
+
+{% block content %} 
+<div class="teacher-detail-container">
+    
+    <!-- Ссылка назад -->
+    <a href="{% url 'teachers:teachers_page' %}" class="back-link">&larr; Вернуться к преподавателям</a>
+
+    <!-- Аватар и ФИО -->
+    <div class="teacher-detail-header">
+        <div class="teacher-avatar-circle">
+            {% if teacher.photo %}
+                <img src="{{ teacher.photo.url }}" alt="{{ teacher.first_name }}">
+            {% else %}
+                <div style="font-size: 4rem; display: flex; align-items: center; justify-content: center; height: 100%; background: #f1f5f9; color: var(--text-muted);">👤</div>
+            {% endif %}
+        </div>
+        <div class="teacher-main-info">
+            <h1 class="teacher-fullname">{{ teacher.first_name }} {{ teacher.patronymic }} {{ teacher.last_name }}</h1>
+            <span class="teacher-badge">⭐ Преподаватель</span>
+        </div>
+    </div>
+
+    <!-- Курсы -->
+    <div class="info-field">
+        <span class="label">📚 Курсы</span>
+        <div class="value">
+            {% for course in courses %}
+                <a href="{% url 'courses:course_detail' course.pk %}">{{ course.title }}</a>{% if not forloop.last %}, {% endif %}
+            {% empty %}
+                <span style="color: var(--text-muted);">Учебные курсы пока не закреплены.</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Биография -->
+    <div class="info-field">
+        <span class="label">📜 Биография</span>
+        <div class="value">
+            {{ teacher.bio|default:"Биография преподавателя скоро будет опубликована." }}
+        </div>
+    </div>
+
+    <!-- Возраст -->
+    <div class="info-field">
+        <span class="label">🎂 Возраст</span>
+        <div class="value">
+            {{ teacher.age }} <small>лет</small>
+        </div>
+    </div>
+
+    <!-- Контакты -->
+    <div class="info-field">
+        <span class="label">📧 Email</span>
+        <div class="value">
+            {% if teacher.contact_email %}
+                <a href="mailto:{{ teacher.contact_email }}">{{ teacher.contact_email }}</a>
+            {% else %}
+                <span style="color: var(--text-muted);">Не указан</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- ФОРМА ДЛЯ ВОПРОСА -->
+    <div class="question-section">
+        <h3 class="question-title">✉️ Задать вопрос {{ teacher.first_name }}</h3>
+        
+        <form method="post" class="question-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="{{ form.question.id_for_label }}" class="form-label">
+                    Ваш вопрос:
+                </label>
+                {{ form.question }}
+                {% if form.question.errors %}
+                <div class="form-errors" style="color: #ef4444; font-size: 0.875rem; margin-top: 0.25rem;">
+                    {{ form.question.errors }}
+                </div>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="form-submit-btn">
+                Отправить вопрос
+            </button>
+        </form>
+
+        {% if messages %}
+        <div class="messages" style="margin-top: 1.5rem;">
+            {% for message in messages %}
+            <div class="alert alert-success" style="padding: 1rem; border-radius: var(--border-radius-sm); background-color: #ecfdf5; color: #065f46; border: 1px solid #d1fae5;">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

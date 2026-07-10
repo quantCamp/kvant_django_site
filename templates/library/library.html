@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Библиотека полезных материалов | ЛФМШ «Квант»{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/library.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="library-header">
+    <h1>Полезные материалы</h1>
+    <p class="subtitle">База знаний, книги, руководства и шпаргалки по веб-разработке и Python для участников школы.</p>
+</div>
+
+<ul class="category-grid">
+    {% for category in categories %}
+    <li class="category-card">
+        <a href="{% url 'library:category_page' category_id=category.id %}">
+            <h3 class="category-card-title">📁 {{ category.name }}</h3>
+            <span class="category-card-action">Перейти к материалам &rarr;</span>
+        </a>
+    </li>
+    {% empty %}
+    <li class="empty-library">
+        <p>Категории библиотеки пока отсутствуют. Вы можете добавить их через панель администратора.</p>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

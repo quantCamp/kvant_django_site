@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ album.title }} — Галерея Квант{% endblock %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="album-detail-header">
+    <a href="{% url 'gallery:album_list' %}" class="back-link">← Назад к альбомам</a>
+    <h1>{{ album.title }}</h1>
+    <p class="album-meta">
+        {{ photos|length }} фотографий •
+        {{ album.created_at|date:"d.m.Y" }}
+    </p>
+    {% if album.description %}
+        <p class="album-description">{{ album.description }}</p>
+    {% endif %}
+</div>
+
+<!-- Сетка фотографий -->
+<div class="photo-grid">
+    {% for photo in photos %}
+    <div class="photo-item">
+        <a href="{{ photo.img.url }}" data-lightbox="album" data-title="{{ photo.caption|default:album.title }}">
+            <img src="{{ photo.img.url }}" alt="{{ photo.caption|default:'Фото' }}">
+            {% if photo.caption %}
+                <span class="photo-title">{{ photo.caption }}</span>
+            {% endif %}
+        </a>
+    </div>
+    {% empty %}
+    <div class="empty-message">
+        <p>🖼️ В этом альбоме пока нет фотографий.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    <script>
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'disableScrolling': true,
+            'albumLabel': 'Фото %1 из %2'
+        });
+    </script>
+{% endblock %}

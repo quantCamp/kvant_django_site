@@ -23,11 +23,15 @@
             </a>
             <nav class="nav">
                 <ul class="nav-list">
-                    <li><a href="{% url 'main:index' %}" class="nav-link active">Главная</a></li>
-                    <li><a href="#" class="nav-link disabled">Расписание</a></li>
-                    <li><a href="#" class="nav-link disabled">Профиль</a></li>
-                    <li><a href="#" class="nav-link disabled">Новости</a></li>
-                    <li><a href="#" class="nav-link disabled">О школе</a></li>
+                    <li><a href="{% url 'main:index' %}" class="nav-link {% if request.resolver_match.view_name == 'main:index' or request.path == '/' %}active{% endif %}">Главная</a></li>
+                    <li><a href="{% url 'news:index' %}" class="nav-link {% if request.resolver_match.app_name == 'news' or '/news/' in request.path %}active{% endif %}">Новости</a></li>
+                    <li><a href="{% url 'schedule:schedule_view' %}" class="nav-link {% if request.resolver_match.app_name == 'schedule' or '/schedule/' in request.path %}active{% endif %}">Расписание</a></li>
+                    <li><a href="{% url 'teachers:teachers_page' %}" class="nav-link {% if request.resolver_match.app_name == 'teachers' or '/teachers/' in request.path %}active{% endif %}">Преподаватели</a></li>
+                    <li><a href="{% url 'courses:course_list' %}" class="nav-link {% if request.resolver_match.app_name == 'courses' or '/courses/' in request.path %}active{% endif %}">Курсы</a></li>
+                    <li><a href="{% url 'gallery:album_list' %}" class="nav-link {% if request.resolver_match.app_name == 'gallery' or '/gallery/' in request.path %}active{% endif %}">Галерея</a></li>
+                    <li><a href="{% url 'library:main_page' %}" class="nav-link {% if request.resolver_match.app_name == 'library' or '/library/' in request.path %}active{% endif %}">Библиотека</a></li>
+                    <li><a href="{% url 'about:about' %}" class="nav-link {% if request.resolver_match.app_name == 'about' or '/about/' in request.path %}active{% endif %}">О школе</a></li>
+                    <li><a href="{% url 'faq:faq_view' %}" class="nav-link {% if request.resolver_match.app_name == 'faq' or '/faq/' in request.path %}active{% endif %}">FAQ</a></li>
                 </ul>
             </nav>
         </div>
@@ -44,8 +48,9 @@
     <footer class="footer">
         <div class="container footer-container">
             <p class="footer-copy">&copy; 2026 Летняя физико-математическая школа «Квант». Все права защищены.</p>
-            <p class="footer-info">Проект создан для обучения основам веб-разработки.</p>
+            <p class="footer-info">Проект создан выпускниками курса "Веб-разработка на Python (Django)" 2026</p>
         </div>
     </footer>
+    {% block extra_js %}{% endblock %}
 </body>
 </html>

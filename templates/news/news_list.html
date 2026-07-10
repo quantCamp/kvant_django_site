@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Новости — Летняя школа «Квант»{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/news.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="news-header">
+    <h1>Новости школы</h1>
+    <p class="teachers-subtitle">События, объявления и репортажи из жизни ЛФМШ «Квант»</p>
+</div>
+
+<div class="news-add-link-container">
+    <a href="{% url 'news:add' %}" class="btn-add-news">
+        <span>➕</span> Опубликовать новость
+    </a>
+</div>
+
+<div class="content-wrapper">
+    {% for item in news %}
+    <article class="news-card">
+        <a href="{% url 'news:detail' news_id=item.pk %}">
+            {% if item.img %}
+                <img src="{{ item.img.url }}" alt="{{ item.title }}">
+            {% else %}
+                <div style="height: 200px; background-color: #f1f5f9; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">📰</div>
+            {% endif %}
+            <div class="news-card-body">
+                <h2 class="news-title">{{ item.title }}</h2>
+                <p class="news-text">{{ item.text|truncatechars:150 }}</p>
+            </div>
+        </a>
+    </article>
+    {% empty %}
+    <div style="grid-column: 1/-1; text-align: center; padding: 3rem 0; color: var(--text-muted);">
+        Свежих новостей пока нет. Будьте первыми, кто добавит новость!
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

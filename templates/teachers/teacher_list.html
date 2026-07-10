@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Преподаватели — Летняя школа «Квант»{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/teachers.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="teachers-main">
+    <div class="teachers-header">
+        <h1>Преподаватели</h1>
+        <p class="teachers-subtitle">Команда вдохновляющих наставников летней школы «Квант»</p>
+    </div>
+
+    <div class="teachers-grid">
+        {% for teacher in teachers %}
+        <div class="teachers-card">
+            {% if teacher.photo %}
+            <div class="teachers-photo-container">
+                <img src="{{ teacher.photo.url }}" alt="{{ teacher.first_name }}">
+            </div>
+            {% else %}
+            <div class="teachers-photo-placeholder">👤</div>
+            {% endif %}
+
+            <!-- Имя -->
+            <a href="{% url 'teachers:teacher_name' teacher_id=teacher.id %}" class="teachers-name-link">
+                {{ teacher.first_name }} {{ teacher.patronymic }}
+            </a>
+
+            <div class="teachers-divider"></div>
+
+            {% if teacher.short_info %}
+            <p class="teachers-subject">{{ teacher.short_info }}</p>
+            {% endif %}
+        </div>
+        {% empty %}
+        <div class="teachers-empty" style="grid-column: 1/-1; text-align: center; padding: 3rem 0; color: var(--text-muted);">
+            <p>Преподаватели скоро появятся на сайте. Следите за обновлениями!</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

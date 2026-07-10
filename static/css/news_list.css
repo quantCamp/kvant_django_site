@@ -1,0 +1,110 @@
+/* ============================================
+   ИЗОЛИРОВАННЫЙ БЛОК СТИЛЕЙ ДЛЯ НОВОСТЕЙ
+   Все стили "привязаны" к .content-wrapper
+   чтобы не конфликтовать с header/footer
+   ============================================ */
+
+/* ----- ОБЩИЙ КОНТЕЙНЕР (сетка) ----- */
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    background: transparent; /* Прозрачный фон, чтобы не перекрывать фон body */
+}
+
+/* ----- КАРТОЧКА НОВОСТИ ----- */
+.content-wrapper .news-card {
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    border: 1px solid #f0f0f0;
+}
+
+.content-wrapper .news-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* ----- ССЫЛКА (вся карточка кликабельна) ----- */
+.content-wrapper .news-card a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 0 0 20px 0; /* Отступы только снизу, сверху картинка без отступа */
+}
+
+/* ----- ИЗОБРАЖЕНИЕ ----- */
+.content-wrapper .news-card img {
+    width: 280px;  /* Фиксированная ширина */
+    height: 200px; /* Фиксированная высота */
+    object-fit: cover; /* Обрезает лишнее, сохраняя пропорции */
+    object-position: center; /* Центрирует обрезку */
+    display: block;
+    background: #e9ecef;
+    border-bottom: 1px solid #eee;
+    flex-shrink: 0; /* Чтобы не сжималась в гриде */
+}
+
+/* ----- ЗАГОЛОВОК (H2) ----- */
+.content-wrapper .news-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 16px 20px 8px 20px;
+    line-height: 1.4;
+    font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    /* Сброс глобальных стилей h2, если они есть */
+    letter-spacing: normal;
+    text-transform: none;
+    border: none;
+    background: transparent;
+}
+
+/* ----- ТЕКСТ НОВОСТИ (ЗАМЕНА <h4> НА <p>) ----- */
+.content-wrapper .news-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #4a4a5a;
+    margin: 0 20px 12px 20px;
+    font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    /* Сбрасываем возможные стили h4 */
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+/* ----- АДАПТАЦИЯ ПОД ПЛАНШЕТЫ ----- */
+@media (max-width: 768px) {
+    .content-wrapper {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 20px;
+        padding: 20px 15px;
+    }
+    .content-wrapper .news-title {
+        font-size: 1.1rem;
+        margin: 14px 16px 6px 16px;
+    }
+    .content-wrapper .news-text {
+        font-size: 0.9rem;
+        margin: 0 16px 10px 16px;
+    }
+}
+
+/* ----- АДАПТАЦИЯ ПОД ТЕЛЕФОНЫ ----- */
+@media (max-width: 480px) {
+    .content-wrapper {
+        grid-template-columns: 1fr;
+        padding: 15px 12px;
+    }
+    .content-wrapper .news-card img {
+        height: 180px;
+    }
+    .content-wrapper .news-title {
+        font-size: 1.05rem;
+    }
+}

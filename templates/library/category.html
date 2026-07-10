@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Материалы по категории: {{ name }} | ЛФМШ «Квант»{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/library.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="category-header">
+    <a href="{% url 'library:main_page' %}" class="back-link">&larr; Назад к категориям</a>
+    <h1>{{ name }}</h1>
+    <p class="subtitle">Полезные учебные материалы и полезные ссылки.</p>
+</div>
+
+<ul class="materials-list">
+    {% for material in materials %}
+    <li class="material-card">
+        {% if material.material_type == "link" %}
+            <a href="{{ material.link }}" class="material-card-link" target="_blank">
+                <div class="material-title-container">
+                    <span class="material-title-link">{{ material.title }}</span>
+                    <span class="material-badge material-badge-link">Ссылка</span>
+                </div>
+                <p class="material-desc">{{ material.description }}</p>
+            </a>
+        {% elif material.material_type == "file" %}
+            {% if material.file %}
+                <a href="{{ material.file.url }}" download class="material-card-link">
+                    <div class="material-title-container">
+                        <span class="material-title-link">{{ material.title }}</span>
+                        <span class="material-badge material-badge-file">Файл</span>
+                    </div>
+                    <p class="material-desc">{{ material.description }}</p>
+                </a>
+            {% else %}
+                <div class="material-card-link disabled-link">
+                    <div class="material-title-container">
+                        <span class="material-title-link" style="opacity: 0.6;">{{ material.title }} (Файл не загружен)</span>
+                        <span class="material-badge material-badge-file">Файл</span>
+                    </div>
+                    <p class="material-desc">{{ material.description }}</p>
+                </div>
+            {% endif %}
+        {% endif %}
+    </li>
+    {% empty %}
+    <li class="empty-library">
+        <p>В этой категории пока нет материалов. Зайдите позже!</p>
+    </li>
+    {% endfor %}
+</ul>
+
+<div class="btn-back-container">
+    <a href="{% url 'library:main_page' %}" class="btn-back">&larr; Назад к категориям</a>
+</div>
+{% endblock %}

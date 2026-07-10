@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ new.title }} — Летняя школа «Квант»{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/news.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="news-detail-container">
+    
+    <!-- Ссылка назад -->
+    <a href="{% url 'news:index' %}" class="back-link">&larr; Вернуться к новостям</a>
+
+    <!-- Статья -->
+    <article class="news-detail-block">
+        {% if new.img %}
+            <img src="{{ new.img.url }}" alt="{{ new.title }}">
+        {% endif %}
+        <div class="news-detail-content">
+            <h1 class="news-detail-title">{{ new.title }}</h1>
+            <p class="news-detail-text">{{ new.text }}</p>
+        </div>
+    </article>
+
+    <!-- Раздел комментариев -->
+    <div class="comments-section">
+        <h3 class="comments-title">Комментарии ({{ comments|length }})</h3>
+
+        {% if comments %}
+        <ul class="comments-list">
+            {% for comment in comments %}
+            <li class="news-comment-item">
+                <p class="news-comment-text">{{ comment.text }}</p>
+                <span class="news-comment-date">🕒 {{ comment.created_at|date:"d.m.Y H:i" }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">Комментариев пока нет. Будьте первым, кто оставит мнение!</p>
+        {% endif %}
+
+        <!-- Форма добавления -->
+        <form class="news-comment-form" method="post">
+            {% csrf_token %}
+            <h4 style="font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem;">Оставить комментарий</h4>
+            {{ form.as_p }}
+            <button class="news-submit-btn" type="submit">
+                Отправить комментарий
+            </button>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

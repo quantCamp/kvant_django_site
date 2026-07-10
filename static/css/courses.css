@@ -1,0 +1,167 @@
+/* courses.css - Стили для каталога учебных курсов ЛФМШ «Квант» */
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.course-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.course-icon-wrapper {
+    font-size: 2.2rem;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #eff6ff;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.05);
+}
+
+.course-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.75rem;
+}
+
+.course-text {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.course-btn {
+    align-self: flex-start;
+    margin-top: auto;
+}
+
+/* Детальная страница курса */
+.course-detail-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.course-main-info {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.course-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+.course-main-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.025em;
+}
+
+.course-subtitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 1.25rem;
+}
+
+.course-description-block {
+    margin-bottom: 2.5rem;
+}
+
+.course-full-text {
+    font-size: 1.05rem;
+    color: var(--text-main);
+    line-height: 1.7;
+    white-space: pre-line;
+}
+
+/* Боковая панель преподавателей */
+.teachers-sidebar {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+    height: fit-content;
+}
+
+.teachers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+}
+
+.teacher-item {
+    padding: 1.25rem;
+    border-radius: var(--border-radius-sm);
+    transition: all var(--transition-fast);
+    background-color: #f8fafc;
+}
+
+.teacher-item:hover {
+    border-color: rgba(59, 130, 246, 0.4);
+    background-color: #ffffff;
+    box-shadow: var(--shadow-sm);
+}
+
+.teacher-name-link {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1rem;
+    display: inline-block;
+    transition: color var(--transition-fast);
+}
+
+.teacher-name-link:hover {
+    color: var(--primary-hover);
+}
+
+.teacher-bio {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+    .course-detail-layout {
+        grid-template-columns: 1fr;
+    }
+}
